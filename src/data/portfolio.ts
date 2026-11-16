@@ -1,5 +1,4 @@
 import images from "./images.json";
-import { BASE_PATH } from "./site";
 
 export type ImageName = keyof typeof images;
 
@@ -406,11 +405,6 @@ export const feedback: Feedback[] = [
   },
 ];
 
-function withBasePath(variant: ImageVariant): ImageVariant {
-  return { ...variant, src: `${BASE_PATH}${variant.src}` };
-}
-
 export function imageOf(name: ImageName): ImageEntry {
-  const { large, small }: ImageEntry = images[name];
-  return { large: withBasePath(large), small: small && withBasePath(small) };
+  return images[name];
 }

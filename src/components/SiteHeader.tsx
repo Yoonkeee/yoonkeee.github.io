@@ -1,23 +1,22 @@
+import Link from "next/link";
 import { profile } from "@/data/portfolio";
+import { ROUTES } from "@/data/site";
 import styles from "./SiteHeader.module.css";
 
-const LINKS = [
-  { href: "#toc", label: "목차" },
-  { href: "#feedback", label: "동료 피드백" },
-];
+export type HeaderLink = { href: string; label: string };
 
-export function SiteHeader() {
+export function SiteHeader({ links }: { links: HeaderLink[] }) {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
-        <a className={styles.brand} href="#main">
+        <Link className={styles.brand} href={ROUTES.home}>
           {profile.name}
-        </a>
+        </Link>
         <nav aria-label="주요 메뉴">
           <ul className={styles.links}>
-            {LINKS.map((link) => (
+            {links.map((link) => (
               <li key={link.href}>
-                <a href={link.href}>{link.label}</a>
+                <Link href={link.href}>{link.label}</Link>
               </li>
             ))}
           </ul>
