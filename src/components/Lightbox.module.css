@@ -6,17 +6,20 @@
   margin: 0;
   padding: 0;
   border: 0;
-  background: rgb(15 18 26 / 0.92);
-  color: #eef0f4;
+  background: rgb(15 18 26 / 0.6);
+  /* Blurs the page behind so its text does not compete with the caption. */
+  backdrop-filter: blur(6px);
+  color: #ffffff;
 }
 
+/* The dialog fills the viewport, so it is the only dimming layer. */
 .dialog::backdrop {
-  background: rgb(15 18 26 / 0.6);
+  background: transparent;
 }
 
 .dialog[open] {
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -32,8 +35,10 @@
 }
 
 .bar {
-  display: flex;
-  justify-content: flex-end;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
   padding: 12px var(--gutter);
 }
 
@@ -42,19 +47,19 @@
   place-items: center;
   width: 44px;
   height: 44px;
-  border: 1px solid rgb(255 255 255 / 0.28);
+  border: 1px solid rgb(255 255 255 / 0.5);
   border-radius: 50%;
-  background: transparent;
+  background: rgb(15 18 26 / 0.5);
   color: #ffffff;
   cursor: pointer;
 }
 
 .close:hover {
-  background: rgb(255 255 255 / 0.12);
+  background: rgb(15 18 26 / 0.7);
 }
 
 .close:active {
-  background: rgb(255 255 255 / 0.2);
+  background: rgb(15 18 26 / 0.85);
 }
 
 .close:focus-visible {
@@ -62,9 +67,12 @@
 }
 
 .scroller {
+  display: flex;
+  flex-direction: column;
   overflow: auto;
   overscroll-behavior: contain;
-  padding: 0 var(--gutter) 32px;
+  /* Equal top and bottom padding keeps the image centred and clear of the close button. */
+  padding: 68px var(--gutter);
   scrollbar-color: rgb(255 255 255 / 0.4) transparent;
   scrollbar-width: thin;
 }
@@ -72,7 +80,8 @@
 .figure {
   width: max(100%, min(var(--natural-width) / 2, 880px));
   max-width: min(var(--natural-width), 1400px);
-  margin-inline: auto;
+  /* Auto margins centre the image and collapse to 0 when it is taller than the screen. */
+  margin: auto;
 }
 
 .figure img {
@@ -85,7 +94,7 @@
 
 .figure figcaption {
   margin-top: 14px;
-  color: #c9ced8;
+  color: #ffffff;
   font-size: var(--fs-small);
   text-align: center;
 }
