@@ -8,7 +8,7 @@ import styles from "./ShotGroup.module.css";
 const SIZES: Record<FrameKind, string> = {
   screen: "(min-width: 1024px) 60vw, 100vw",
   diagram: "(min-width: 1024px) 60vw, 100vw",
-  phone: "300px",
+  phone: "380px",
   inline: "400px",
 };
 
