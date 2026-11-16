@@ -16,23 +16,25 @@ export function Hero() {
   return (
     <section className={`container ${styles.hero}`} aria-labelledby="hero-name">
       <div className={styles.column}>
-        <h1 id="hero-name" className={styles.name}>
-          {profile.name}
-        </h1>
-        <p className={styles.role}>
-          <span>{profile.role}</span>
-          <span className={styles.stack}>{profile.stack}</span>
-        </p>
-        <p className={styles.lead}>{profile.intro}</p>
-        <div className={styles.actions}>
-          <a className={styles.primary} href={`mailto:${profile.email}`}>
-            <MailIcon />
-            {profile.email}
-          </a>
-          <a className={styles.secondary} href={profile.github.url}>
-            <GithubIcon />
-            {profile.github.label}
-          </a>
+        <div>
+          <h1 id="hero-name" className={styles.name}>
+            {profile.name}
+          </h1>
+          <p className={styles.role}>
+            <span>{profile.role}</span>
+            <span className={styles.stack}>{profile.stack}</span>
+          </p>
+          <p className={styles.lead}>{profile.intro}</p>
+          <div className={styles.actions}>
+            <a className={styles.primary} href={`mailto:${profile.email}`}>
+              <MailIcon />
+              {profile.email}
+            </a>
+            <a className={styles.secondary} href={profile.github.url}>
+              <GithubIcon />
+              {profile.github.label}
+            </a>
+          </div>
         </div>
         <nav id="toc" aria-label="목차" className={styles.toc}>
           <ol className={styles.index}>

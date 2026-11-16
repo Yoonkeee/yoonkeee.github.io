@@ -131,3 +131,21 @@
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
+
+@media (min-width: 1024px) {
+  .column {
+    display: grid;
+    grid-template-columns: var(--text-column) var(--visual-column);
+    column-gap: var(--column-gap);
+    align-items: end;
+    max-width: none;
+  }
+
+  .toc {
+    margin-top: 0;
+  }
+
+  .index {
+    margin-right: 0;
+  }
+}
