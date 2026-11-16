@@ -93,8 +93,11 @@ export const profile = {
   name: "김윤기",
   role: "프론트엔드 개발자",
   stack: "React · Next.js · TypeScript",
-  intro:
-    "Next.js 기반 웹과 모바일 프론트엔드를 개발하며, 주변 동료들의 어려움을 도구와 자동화로 해결해 왔습니다. 팀의 생산성을 높이고 불편함을 해소하기 위해 스스로 문제를 정의하고 개선책을 찾아 실행합니다. 타 직군과의 의사소통에도 능숙하고, 좋은 팀 분위기를 만들기 위해 노력합니다.",
+  intro: [
+    "Next.js 기반 웹과 모바일 프론트엔드를 개발하며, 주변 동료들의 어려움을 도구와 자동화로 해결해 왔습니다.",
+    "팀의 생산성을 높이고 불편함을 해소하기 위해 스스로 문제를 정의하고 개선책을 찾아 실행합니다.",
+    "타 직군과의 의사소통에도 능숙하고, 좋은 팀 분위기를 만들기 위해 노력합니다.",
+  ],
   email: "yoonkeee@gmail.com",
   github: { label: "github.com/Yoonkeee", url: "https://github.com/Yoonkeee" },
 } as const;

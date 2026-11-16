@@ -23,7 +23,13 @@ export function Hero() {
           <span>{profile.role}</span>
           <span className={styles.stack}>{profile.stack}</span>
         </p>
-        <p className={styles.lead}>{profile.intro}</p>
+        <p className={styles.lead}>
+          {profile.intro.map((sentence) => (
+            <span key={sentence} className={styles.sentence}>
+              {sentence}{" "}
+            </span>
+          ))}
+        </p>
         <div className={styles.actions}>
           <a className={styles.primary} href={`mailto:${profile.email}`}>
             <MailIcon />

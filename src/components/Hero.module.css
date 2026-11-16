@@ -34,6 +34,16 @@
   font-size: var(--fs-lead);
 }
 
+@media (min-width: 1024px) {
+  .column > .lead {
+    max-width: none;
+  }
+
+  .sentence {
+    display: block;
+  }
+}
+
 .actions {
   display: flex;
   flex-wrap: wrap;
