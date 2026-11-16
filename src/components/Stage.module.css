@@ -19,7 +19,10 @@
 }
 
 .title {
-  font-size: var(--panel-caption, var(--fs-h4));
+  font-size: var(--panel-caption, 1.0625rem);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
 }
 
 .title + .title {
@@ -52,7 +55,7 @@
     --head-pad: 0px;
     --panel-summary: clamp(0.9375rem, 1.9svh, 1.0625rem);
     --panel-body: clamp(0.9375rem, 1.9svh, 1.0625rem);
-    --panel-caption: clamp(1.1875rem, 2.4svh, 1.375rem);
+    --panel-caption: clamp(1rem, 2svh, 1.125rem);
     --panel-leading: 1.62;
     --panel-space: var(--p-space);
   }
