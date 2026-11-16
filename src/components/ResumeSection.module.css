@@ -1,6 +1,8 @@
 .section {
   --label-col: 11.5rem;
   --label-gap: 40px;
+  /* Height of the pinned section title: one heading line plus its 12px and 10px padding. */
+  --title-h: calc(var(--fs-h2) * var(--lh-heading) + 22px);
   margin-top: var(--section-gap);
 }
 
@@ -19,9 +21,31 @@ section.section {
   font-variant-numeric: tabular-nums;
 }
 
+/* The title pins against the frame, so its wrapper must not be its containing block. */
+.head {
+  display: contents;
+}
+
+/* Stays under the site header while its section scrolls; the margins cancel the padding so the resting spacing is unchanged. */
 .title {
-  margin-top: 8px;
+  position: sticky;
+  top: var(--header-h);
+  z-index: 2;
+  margin-block: -4px -10px;
+  padding-block: 12px 10px;
+  background: var(--bg);
   font-size: var(--fs-h2);
+}
+
+/* Fades the lines sliding under a pinned heading instead of cutting them mid-glyph. */
+.title::after,
+.workHead::after {
+  position: absolute;
+  inset: 100% 0 auto;
+  height: 10px;
+  background: linear-gradient(var(--bg), transparent);
+  content: "";
+  pointer-events: none;
 }
 
 .body {
@@ -75,10 +99,10 @@ section.section {
   border-top: 1px solid var(--line);
 }
 
-/* Stays under the site header while its work block scrolls; the background hides the text passing beneath. */
+/* Stays under the pinned section title while its work block scrolls; the background hides the text passing beneath. */
 .workHead {
   position: sticky;
-  top: var(--header-h);
+  top: calc(var(--header-h) + var(--title-h));
   z-index: 1;
   display: flex;
   flex-wrap: wrap;
@@ -87,16 +111,6 @@ section.section {
   gap: 0 16px;
   padding-block: 24px 10px;
   background: var(--bg);
-}
-
-/* Fades the lines sliding under the pinned heading instead of cutting them mid-glyph. */
-.workHead::after {
-  position: absolute;
-  inset: 100% 0 auto;
-  height: 10px;
-  background: linear-gradient(var(--bg), transparent);
-  content: "";
-  pointer-events: none;
 }
 
 .work > .bullets {
@@ -238,7 +252,7 @@ section.section {
   /* Pinned entries keep the whole heading in the left column while the content scrolls. */
   .frame[data-pin] .entryHead {
     position: sticky;
-    top: calc(var(--header-h) + 32px);
+    top: calc(var(--header-h) + var(--title-h) + 24px);
     display: block;
     grid-area: 1 / 1;
   }
