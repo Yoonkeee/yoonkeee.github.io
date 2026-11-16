@@ -1,6 +1,7 @@
 node_modules/
 .next/
 out/
+_site/
 public/fonts/
 next-env.d.ts
 *.tsbuildinfo

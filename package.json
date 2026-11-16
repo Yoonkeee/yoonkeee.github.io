@@ -10,6 +10,7 @@
     "fonts": "node scripts/subset-font.mjs",
     "predev": "npm run fonts",
     "prebuild": "npm run fonts",
+    "postbuild": "rm -rf _site && mkdir _site && cp -R out _site/pf && cp -R site-root/. _site/ && cp out/404.html _site/404.html",
     "images": "bun scripts/optimize-images.ts"
   },
   "dependencies": {
