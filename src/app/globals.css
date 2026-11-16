@@ -57,6 +57,8 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  /* Keeps the page width equal whether or not a page is long enough to scroll. */
+  scrollbar-gutter: stable;
 }
 
 @media (prefers-reduced-motion: no-preference) {

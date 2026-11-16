@@ -1,7 +1,10 @@
 .hero {
   --hero-pad: clamp(32px, 5vw, 64px);
+  /* The name block sits at the same spot on every page: the top gap depends on the window only, never on what follows the buttons, and the width ignores a page's narrower container. */
+  --hero-top: max(var(--hero-pad), calc((100svh - var(--header-h) - 44rem) / 2));
+  --container-max: initial;
   display: grid;
-  grid-template-rows: minmax(var(--hero-pad), 1fr) auto minmax(var(--hero-pad), 1fr);
+  grid-template-rows: var(--hero-top) auto minmax(var(--hero-pad), 1fr);
   min-height: calc(100svh - var(--header-h));
   margin-bottom: calc(var(--hero-pad) * -1);
 }

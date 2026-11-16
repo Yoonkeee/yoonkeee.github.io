@@ -8,6 +8,7 @@
 }
 
 .inner {
+  --container-max: initial;
   display: flex;
   align-items: center;
   gap: clamp(12px, 3vw, 28px);
