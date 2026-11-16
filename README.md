@@ -1,6 +1,8 @@
 # yoonkeee.github.io
 
-김윤기의 프론트엔드 개발자 포트폴리오입니다. https://yoonkeee.github.io
+김윤기의 프론트엔드 개발자 포트폴리오입니다. https://yoonkeee.github.io/pf/
+
+포트폴리오는 `/pf/` 아래에 있습니다(`next.config.ts`의 `basePath`). 루트 `/`에는 `/pf/`로 넘기는 `site-root/index.html`만 둡니다.
 
 Next.js(App Router) 정적 내보내기, TypeScript, CSS Modules로 만들었습니다. 런타임 의존성은 `next`, `react`, `react-dom`뿐입니다.
 
@@ -8,14 +10,14 @@ Next.js(App Router) 정적 내보내기, TypeScript, CSS Modules로 만들었습
 
 ```sh
 npm install
-npm run dev        # http://localhost:4321
-npm run build      # out/ 에 정적 파일 생성
+npm run dev        # http://localhost:4321/pf
+npm run build      # _site/ 에 배포할 파일 생성 (_site/pf 가 포트폴리오, _site/index.html 이 넘김 페이지)
 npm run typecheck
 ```
 
 `dev`와 `build`는 먼저 `npm run fonts`를 돌려 `src/`에 쓰인 글자만 담은 Pretendard 가변 글꼴(`public/fonts/pretendard-subset.woff2`)을 만듭니다.
 
-`main`에 push하면 `.github/workflows/deploy.yml`이 빌드해서 GitHub Pages에 배포합니다.
+`main`에 push하면 `.github/workflows/deploy.yml`이 빌드해서 `_site/`를 GitHub Pages에 배포합니다.
 
 ## 구조
 
@@ -23,6 +25,8 @@ npm run typecheck
 |---|---|
 | `src/data/portfolio.ts` | 프로젝트, 피드백, 연락처 문구 (화면에 나오는 모든 글) |
 | `src/data/images.json` | 이미지 크기 목록 (`npm run images`가 생성) |
+| `src/data/site.ts` | 배포 경로(`/pf`). 이미지와 글꼴 주소 앞에 붙임 |
+| `site-root/` | 루트 `/`에 그대로 올라가는 파일 |
 | `src/components/Stage.tsx` | 스크롤 단계마다 글과 캡처가 바뀌는 고정 무대 |
 | `src/components/ShotGroup.tsx` | 캡처 프레임 (화면, 구조도, 휴대폰, 작은 캡처) |
 | `src/components/Lightbox.tsx` | `<dialog>` 기반 확대 보기 |
