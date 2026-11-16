@@ -33,3 +33,10 @@
 .link:active {
   color: var(--accent);
 }
+
+@media (min-width: 1024px) {
+  .list {
+    grid-template-columns: var(--text-column) var(--visual-column);
+    column-gap: var(--column-gap);
+  }
+}
