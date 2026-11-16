@@ -126,18 +126,8 @@ section.project {
 }
 
 .story {
-  --story-pad: clamp(24px, 4vw, 40px);
-  margin-top: clamp(24px, 4vw, 40px);
-  padding: var(--story-pad);
-  border-radius: var(--radius-lg);
-  background: var(--accent-wash);
-  color: #2c3552;
-}
-
-@media (min-width: 1024px) {
-  .story {
-    margin-inline: calc(var(--story-pad) * -1);
-  }
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
 }
 
 .story p + p {
