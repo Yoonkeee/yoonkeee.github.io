@@ -12,31 +12,34 @@
 }
 
 .list {
-  max-width: var(--measure);
+  max-width: 50rem;
   margin-top: clamp(32px, 5vw, 48px);
 }
 
 .entry {
-  padding-block: 32px 20px;
+  padding-block: clamp(48px, 6vw, 72px) clamp(36px, 4.5vw, 56px);
   border-top: 1px solid var(--line);
+}
+
+.entryHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
 }
 
 .kind {
   font-size: var(--fs-h4);
 }
 
-.meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 1em;
-  margin-top: 6px;
+.date {
   color: var(--ink-muted);
   font-size: var(--fs-small);
   font-variant-numeric: tabular-nums;
 }
 
 .text {
-  margin-top: 16px;
+  margin-top: 20px;
   white-space: pre-line;
 }
 
@@ -45,7 +48,7 @@
 }
 
 .question {
-  margin-top: 16px;
+  margin-top: 20px;
   color: var(--ink);
   font-weight: 600;
 }
@@ -59,13 +62,13 @@
 
 .comments {
   display: grid;
-  gap: 14px;
-  margin-top: 16px;
+  gap: 24px;
+  margin-top: 20px;
 }
 
 .comments li {
-  padding-left: 16px;
-  border-left: 1px solid var(--line);
+  padding-left: 18px;
+  border-left: 2px solid var(--line);
   white-space: pre-line;
 }
 
@@ -74,7 +77,7 @@
   align-items: center;
   gap: 8px;
   min-height: 44px;
-  margin-top: 10px;
+  margin-top: 16px;
   padding: 0;
   border: 0;
   background: none;

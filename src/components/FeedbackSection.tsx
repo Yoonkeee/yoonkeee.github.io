@@ -25,7 +25,10 @@ function Entry({ item }: { item: Feedback }) {
 
   return (
     <article id={item.id} className={styles.entry}>
-      <h3 className={styles.kind}>{item.kind}</h3>
+      <header className={styles.entryHead}>
+        <h3 className={styles.kind}>{item.kind}</h3>
+        {item.type === "note" && <p className={styles.date}>{item.date}</p>}
+      </header>
       <EntryBody item={item} />
       <ZoomButton className={styles.source} target={{ ...large, alt: `${item.kind} 피드백 원본 캡처` }}>
         <ExpandIcon width={16} height={16} />
@@ -39,19 +42,11 @@ function Entry({ item }: { item: Feedback }) {
 function EntryBody({ item }: { item: Feedback }) {
   switch (item.type) {
     case "note":
-      return (
-        <>
-          <p className={styles.meta}>
-            <span>{item.date}</span>
-            <span>{item.tags.join(" · ")}</span>
-          </p>
-          {item.paragraphs.map((paragraph) => (
-            <p key={paragraph} className={styles.text}>
-              {paragraph}
-            </p>
-          ))}
-        </>
-      );
+      return item.paragraphs.map((paragraph) => (
+        <p key={paragraph} className={styles.text}>
+          {paragraph}
+        </p>
+      ));
     case "review":
       return (
         <>
