@@ -200,4 +200,51 @@ section.section {
     max-width: none;
     margin-top: 0;
   }
+
+  /* Pinned entries: the section label stays on top and each entry's heading sticks under it. */
+  .frame[data-pin] {
+    --pin-top: calc(var(--header-h) + 40px);
+    --label-h: calc(var(--fs-body) * var(--lh-body) + 8px + var(--fs-h2) * var(--lh-heading) + 28px);
+  }
+
+  .frame[data-pin] > .head {
+    z-index: 1;
+    grid-area: 1 / 1;
+    height: var(--label-h);
+    background: var(--bg);
+    box-shadow: 0 -40px 0 var(--bg);
+  }
+
+  .frame[data-pin] > .body {
+    display: grid;
+    grid-area: 1 / 1 / 2 / -1;
+    grid-template-columns: subgrid;
+  }
+
+  .frame[data-pin] .entry {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: start;
+  }
+
+  .frame[data-pin] .entryHead {
+    position: sticky;
+    top: calc(var(--pin-top) + var(--label-h));
+    margin-top: var(--label-h);
+  }
+
+  .frame[data-pin] .entryTitle,
+  .frame[data-pin] .meta {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .frame[data-pin] .meta {
+    margin-top: 10px;
+  }
+
+  .frame[data-pin] .entryBody > :first-child {
+    margin-top: 0;
+  }
 }

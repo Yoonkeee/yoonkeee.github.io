@@ -35,7 +35,7 @@ export default function ResumePage() {
         <Hero>
           <Toc entries={TOC} />
         </Hero>
-        <ResumeSection id="experience">
+        <ResumeSection id="experience" pinEntries>
           {experience.map((job) => (
             <Entry
               key={job.id}

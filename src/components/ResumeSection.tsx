@@ -9,14 +9,22 @@ import {
 } from "@/data/resume";
 import styles from "./ResumeSection.module.css";
 
-export function ResumeSection({ id, children }: { id: ResumeSectionId; children: ReactNode }) {
+export function ResumeSection({
+  id,
+  pinEntries = false,
+  children,
+}: {
+  id: ResumeSectionId;
+  pinEntries?: boolean;
+  children: ReactNode;
+}) {
   const section = resumeSections.find((item) => item.id === id);
   if (!section) return null;
   const titleId = `${id}-title`;
 
   return (
     <section id={id} className={`container ${styles.section}`} aria-labelledby={titleId}>
-      <div className={styles.frame}>
+      <div className={styles.frame} data-pin={pinEntries || undefined}>
         <header className={styles.head}>
           <p className={styles.no}>{section.no}</p>
           <h2 id={titleId} className={styles.title}>
@@ -46,18 +54,22 @@ export function Entry({
 }) {
   return (
     <article className={styles.entry}>
-      <h3 className={styles.entryTitle}>
-        {title}
-        {role && <span className={styles.role}>{role}</span>}
-      </h3>
-      <p className={styles.meta}>
-        {meta.map((item) => (
-          <span key={item}>{item}</span>
-        ))}
-      </p>
-      <p className={styles.desc}>{desc}</p>
-      {summary && <p className={styles.summary}>{summary}</p>}
-      {children}
+      <header className={styles.entryHead}>
+        <h3 className={styles.entryTitle}>
+          {title}
+          {role && <span className={styles.role}>{role}</span>}
+        </h3>
+        <p className={styles.meta}>
+          {meta.map((item) => (
+            <span key={item}>{item}</span>
+          ))}
+        </p>
+      </header>
+      <div className={styles.entryBody}>
+        <p className={styles.desc}>{desc}</p>
+        {summary && <p className={styles.summary}>{summary}</p>}
+        {children}
+      </div>
     </article>
   );
 }
