@@ -59,8 +59,9 @@ html {
   -webkit-text-size-adjust: 100%;
   /* Keeps the page width equal whether or not a page is long enough to scroll. */
   scrollbar-gutter: stable;
-  /* Keeps focused elements and anchor targets out from under the sticky site header. */
+  /* Keeps focused elements and anchor targets out from under the sticky site header and the fixed back-to-top button. */
   scroll-padding-top: var(--header-h);
+  scroll-padding-bottom: 72px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
