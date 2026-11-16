@@ -11,6 +11,7 @@ const PUBLISHED: Record<string, string> = {
   "dashboard-table.png": "ai-usage-dashboard",
   "ai-usage-weekly-peak-table.png": "ai-usage-weekly-peak",
   "fit-studio-stack.png": "fit-studio-architecture",
+  "fit-studio-schedule.webp": "fit-studio-schedule",
   "petcare-timetable-list.jpg": "petcare-timetable",
   "petcare-hotel-calendar.jpg": "petcare-hotel-calendar",
   "petcare-hotel-detail.jpg": "petcare-hotel-detail",

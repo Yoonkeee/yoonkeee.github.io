@@ -30,6 +30,7 @@ export type FrameKind = "screen" | "diagram" | "phone" | "inline";
 
 export type StageStep = {
   body?: string;
+  points?: Point[];
   frame: FrameKind;
   shots: Shot[];
 };
@@ -253,7 +254,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    kind: "figure",
+    kind: "stage",
     id: "project-05",
     no: "05",
     title: "필라테스 센터 관리 앱",
@@ -264,21 +265,32 @@ export const projects: Project[] = [
     stack: ["Next.js", "TypeScript", "Mantine UI", "Prisma", "PostgreSQL", "Cloudflare Tunnel"],
     summary:
       "실제 필라테스 센터에서 회원 300여 명과 강사 15명이 사용 중인 레슨 예약 및 센터 운영 서비스입니다. 회원용 모바일 PWA와 운영자 및 강사용 관리 웹을 통해 예약부터 스케줄 관리, 전자 계약과 알림톡 발송까지 한 흐름으로 처리합니다.",
-    points: [
+    steps: [
       {
-        body: "회원의 개인 및 그룹 레슨 예약과 강사의 반복 스케줄 관리, 레슨 일지 기록을 모바일 PWA와 관리 웹에 각각 맞춰 구현했습니다.",
+        points: [
+          {
+            body: "회원의 개인 및 그룹 레슨 예약과 강사의 반복 스케줄 관리, 레슨 일지 기록을 모바일 PWA와 관리 웹에 각각 맞춰 구현했습니다.",
+      },
+          {
+            body: "회원권 판매 시 토스페이먼츠 결제와 카카오톡 기반 전자 계약, 알림톡(Solapi) 발송이 자동으로 이어지도록 연동해 센터의 수기 안내와 종이 계약 과정을 없앴습니다.",
+          },
+          {
+            body: "고정 서버 비용을 줄이기 위해 Mac Mini 홈 서버에 Cloudflare Tunnel과 GitHub Actions(self-hosted runner) 배포 파이프라인을 구축하고, Sentry로 운영 에러를 모니터링하고 있습니다.",
+          },
+        ],
+        frame: "diagram",
+        shots: [
+          {
+            image: "fit-studio-architecture",
+            caption: "회원용 모바일 PWA와 운영자 및 강사용 관리 웹을 제공하고, 결제와 전자 계약, 카카오 알림톡을 연동한 구조",
+          },
+        ],
       },
       {
-        body: "회원권 판매 시 토스페이먼츠 결제와 카카오톡 기반 전자 계약, 알림톡(Solapi) 발송이 자동으로 이어지도록 연동해 센터의 수기 안내와 종이 계약 과정을 없앴습니다.",
-      },
-      {
-        body: "고정 서버 비용을 줄이기 위해 Mac Mini 홈 서버에 Cloudflare Tunnel과 GitHub Actions(self-hosted runner) 배포 파이프라인을 구축하고, Sentry로 운영 에러를 모니터링하고 있습니다.",
+        frame: "screen",
+        shots: [{ image: "fit-studio-schedule", caption: "스케줄표" }],
       },
     ],
-    figure: {
-      image: "fit-studio-architecture",
-      caption: "회원용 모바일 PWA와 운영자 및 강사용 관리 웹을 제공하고, 결제와 전자 계약, 카카오 알림톡을 연동한 구조",
-    },
   },
   {
     kind: "stage",

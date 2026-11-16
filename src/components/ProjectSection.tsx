@@ -69,7 +69,7 @@ function ProjectBody({ project, head }: { project: Project; head: ReactNode }) {
         </div>
       );
     case "figure":
-      return <Stage head={head} steps={[stepView({ frame: "diagram", shots: [project.figure] }, project.points)]} />;
+      return <Stage head={head} steps={[stepView({ points: project.points, frame: "diagram", shots: [project.figure] })]} />;
     case "stage":
       return <Stage head={head} steps={project.steps.map((step) => stepView(step))} />;
     default:
@@ -77,7 +77,9 @@ function ProjectBody({ project, head }: { project: Project; head: ReactNode }) {
   }
 }
 
-function stepView(step: StageStep, points: Point[] = step.body ? [{ body: step.body }] : []): StageStepView {
+function stepView(step: StageStep): StageStepView {
+  const points = step.points ?? (step.body ? [{ body: step.body }] : []);
+
   return {
     id: step.shots.map((shot) => shot.image).join("+"),
     label: step.shots.map((shot) => shot.caption).join(", "),

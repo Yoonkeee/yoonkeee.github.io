@@ -97,6 +97,18 @@
       "height": 530
     }
   },
+  "fit-studio-schedule": {
+    "large": {
+      "src": "/images/fit-studio-schedule.webp",
+      "width": 2000,
+      "height": 1250
+    },
+    "small": {
+      "src": "/images/fit-studio-schedule-sm.webp",
+      "width": 1000,
+      "height": 625
+    }
+  },
   "petcare-timetable": {
     "large": {
       "src": "/images/petcare-timetable.webp",
