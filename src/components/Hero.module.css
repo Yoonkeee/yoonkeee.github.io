@@ -2,7 +2,7 @@
   padding-top: clamp(32px, 5vw, 64px);
 }
 
-.column {
+.column > * {
   max-width: var(--measure);
 }
 
@@ -28,7 +28,8 @@
   white-space: nowrap;
 }
 
-.lead {
+.column > .lead {
+  max-width: 50rem;
   margin-top: 20px;
   font-size: var(--fs-lead);
 }
@@ -130,22 +131,4 @@
   font-size: var(--fs-small);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
-}
-
-@media (min-width: 1024px) {
-  .column {
-    display: grid;
-    grid-template-columns: var(--text-column) var(--visual-column);
-    column-gap: var(--column-gap);
-    align-items: end;
-    max-width: none;
-  }
-
-  .toc {
-    margin-top: 0;
-  }
-
-  .index {
-    margin-right: 0;
-  }
 }
