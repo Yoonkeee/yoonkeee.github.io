@@ -14,36 +14,35 @@
   max-width: var(--measure);
 }
 
-.copy > ul {
-  margin-top: 16px;
-}
-
-.title {
-  font-size: var(--panel-caption, 1.0625rem);
-  font-weight: 600;
+/* Says what the capture shows; kept quieter than the body so it does not read as its heading. */
+.caption {
+  display: flex;
+  gap: 8px;
+  color: var(--ink-muted);
+  font-size: var(--p-meta, 0.9375rem);
   line-height: 1.5;
-  letter-spacing: -0.01em;
 }
 
-.title + .title {
-  margin-top: 14px;
+.copy > ul + .caption {
+  margin-top: var(--p-space, 16px);
+}
+
+.caption + .caption {
+  margin-top: 4px;
+}
+
+.captionIcon {
+  flex: none;
+  margin-top: calc(0.5lh - 8px);
 }
 
 .position {
-  display: block;
-  margin-bottom: 2px;
   color: var(--accent-ink);
-  font-size: var(--p-meta, 0.9375rem);
   font-weight: 600;
-  letter-spacing: 0;
-}
-
-.body {
-  margin-top: 16px;
 }
 
 .visual {
-  margin-top: 28px;
+  margin-top: 20px;
 }
 
 .nav {
@@ -55,7 +54,6 @@
     --head-pad: 0px;
     --panel-summary: clamp(0.9375rem, 1.9svh, 1.0625rem);
     --panel-body: clamp(0.9375rem, 1.9svh, 1.0625rem);
-    --panel-caption: clamp(1rem, 2svh, 1.125rem);
     --panel-leading: 1.62;
     --panel-space: var(--p-space);
   }
@@ -83,15 +81,6 @@
     margin-top: calc(var(--p-block) * 1.6);
     font-size: var(--panel-body);
     line-height: var(--panel-leading);
-  }
-
-  .copy > ul,
-  .body {
-    margin-top: var(--p-space);
-  }
-
-  .title + .title {
-    margin-top: calc(var(--p-space) * 0.7);
   }
 
   .visual {

@@ -1,9 +1,9 @@
 import { Fragment, type ReactNode } from "react";
 import type { EditorialProject, Point, Project, StageStep } from "@/data/portfolio";
 import { LinkedText } from "./LinkedText";
+import { ShotCaptions } from "./ShotCaptions";
 import { ShotGroup } from "./ShotGroup";
 import { Stage, type StageStepView } from "./Stage";
-import { StageCopy } from "./StageCopy";
 import styles from "./ProjectSection.module.css";
 
 export function ProjectSection({ project }: { project: Project }) {
@@ -32,7 +32,6 @@ function ProjectHead({ project, titleId }: { project: Project; titleId: string }
         {project.title}
       </h2>
       <p className={styles.sub}>{project.sub}</p>
-      <p className={styles.summary}>{project.summary}</p>
       <dl className={styles.meta}>
         {meta.map(
           ({ term, detail }) =>
@@ -44,6 +43,7 @@ function ProjectHead({ project, titleId }: { project: Project; titleId: string }
             ),
         )}
       </dl>
+      <p className={styles.summary}>{project.summary}</p>
     </header>
   );
 }
@@ -69,12 +69,7 @@ function ProjectBody({ project, head }: { project: Project; head: ReactNode }) {
         </div>
       );
     case "figure":
-      return (
-        <Stage
-          head={head}
-          steps={[stepView({ frame: "diagram", shots: [project.figure] }, <PointList points={project.points} />)]}
-        />
-      );
+      return <Stage head={head} steps={[stepView({ frame: "diagram", shots: [project.figure] }, project.points)]} />;
     case "stage":
       return <Stage head={head} steps={project.steps.map((step) => stepView(step))} />;
     default:
@@ -82,28 +77,31 @@ function ProjectBody({ project, head }: { project: Project; head: ReactNode }) {
   }
 }
 
-function stepView(step: StageStep, detail?: ReactNode): StageStepView {
+function stepView(step: StageStep, points: Point[] = step.body ? [{ body: step.body }] : []): StageStepView {
   return {
     id: step.shots.map((shot) => shot.image).join("+"),
     label: step.shots.map((shot) => shot.caption).join(", "),
     copy: (
       <>
-        <StageCopy step={step} />
-        {detail}
+        {points.length > 0 && <PointList points={points} />}
+        <ShotCaptions step={step} />
       </>
     ),
     visual: <ShotGroup frame={step.frame} shots={step.shots} />,
   };
 }
 
+/** One bullet per sentence, so a paragraph reads as a list of short lines. */
 function PointList({ points }: { points: Point[] }) {
   return (
     <ul className={styles.points}>
-      {points.map((point) => (
-        <li key={point.body}>
-          <LinkedText text={point.body} link={point.link} />
-        </li>
-      ))}
+      {points.flatMap((point) =>
+        point.body.split(/(?<=[.?!])\s+/).map((sentence) => (
+          <li key={sentence}>
+            <LinkedText text={sentence} link={point.link} />
+          </li>
+        )),
+      )}
     </ul>
   );
 }

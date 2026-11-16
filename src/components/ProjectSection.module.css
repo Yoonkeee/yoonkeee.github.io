@@ -50,18 +50,22 @@ section.project {
   font-size: var(--p-sub, 0.9375rem);
 }
 
-.summary {
-  margin-top: calc(var(--p-space, 20px) * 1.4);
-  color: var(--ink);
-  font-size: var(--panel-summary, var(--fs-lead));
-  line-height: var(--panel-leading, inherit);
-}
-
 .meta {
   display: grid;
-  gap: calc(var(--p-space, 20px) * 0.4);
-  margin-top: calc(var(--p-space, 20px) * 1.2);
+  gap: calc(var(--p-space, 20px) * 0.3);
+  margin-top: calc(var(--p-space, 20px) * 1.1);
   font-size: var(--p-meta, 0.9375rem);
+}
+
+/* The rule closes the facts (title, subtitle, meta); the summary below it leads into the body. */
+.summary {
+  margin-top: calc(var(--p-space, 20px) * 1.1);
+  padding-top: calc(var(--p-space, 20px) * 1.1);
+  border-top: 1px solid var(--line);
+  color: var(--ink);
+  font-size: var(--panel-summary, var(--fs-lead));
+  font-weight: 500;
+  line-height: var(--panel-leading, inherit);
 }
 
 .meta div {
@@ -110,14 +114,25 @@ section.project {
   letter-spacing: -0.02em;
 }
 
-.points li {
-  padding-block: calc(var(--panel-space, 20px) * 0.9);
-  border-top: 1px solid var(--line);
+.points {
+  display: grid;
+  gap: calc(var(--panel-space, 20px) * 0.6);
 }
 
-.points li:first-child {
-  padding-top: 0;
-  border-top: 0;
+.points li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.points li::before {
+  position: absolute;
+  top: calc(0.5lh - 2.5px);
+  left: 2px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-ink);
+  content: "";
 }
 
 .metrics + .points {
@@ -125,7 +140,8 @@ section.project {
 }
 
 .story {
-  padding-top: 18px;
+  margin-top: 28px;
+  padding-top: 28px;
   border-top: 1px solid var(--line);
 }
 
