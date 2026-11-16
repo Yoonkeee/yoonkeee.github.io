@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { InPageLinks } from "@/components/InPageLinks";
 import "./globals.css";
 
 const fontUrl = "/fonts/pretendard-subset.woff2";
@@ -20,7 +21,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="preload" href={fontUrl} as="font" type="font/woff2" crossOrigin="anonymous" />
         <style>{fontFace}</style>
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <InPageLinks />
+      </body>
     </html>
   );
 }

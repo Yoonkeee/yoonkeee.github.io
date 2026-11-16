@@ -144,6 +144,11 @@ button {
   outline-offset: 3px;
 }
 
+/* A section that received focus from an in-page link is not itself a control. */
+[data-anchor-focus]:focus {
+  outline: none;
+}
+
 [id] {
   scroll-margin-top: 24px;
 }
