@@ -14,6 +14,7 @@ import { Toc } from "@/components/Toc";
 import { profile } from "@/data/portfolio";
 import { activities, education, experience, resumeSections, sideProjects, skills } from "@/data/resume";
 import { pageMetadata, ROUTES } from "@/data/site";
+import styles from "./page.module.css";
 
 export const metadata = pageMetadata(`${profile.name} 이력서`, ROUTES.resume);
 
@@ -26,7 +27,7 @@ const TOC = resumeSections.map((section) => ({ href: `#${section.id}`, no: secti
 
 export default function ResumePage() {
   return (
-    <>
+    <div className={styles.page}>
       <a className="skip-link" href="#main">
         본문으로 건너뛰기
       </a>
@@ -71,6 +72,6 @@ export default function ResumePage() {
         </ResumeSection>
       </main>
       <Contact />
-    </>
+    </div>
   );
 }

@@ -1,4 +1,6 @@
 .section {
+  --label-col: 11.5rem;
+  --label-gap: 40px;
   margin-top: var(--section-gap);
 }
 
@@ -23,8 +25,7 @@ section.section {
 }
 
 .body {
-  max-width: var(--measure);
-  margin-top: clamp(32px, 5vw, 48px);
+  margin-top: clamp(28px, 4vw, 40px);
 }
 
 .entry + .entry {
@@ -176,72 +177,64 @@ section.section {
 
 @media (min-width: 640px) {
   .rows > div {
-    grid-template-columns: 10.5rem minmax(0, 1fr);
-    gap: 16px;
+    grid-template-columns: var(--label-col) minmax(0, 1fr);
+    gap: var(--label-gap);
     align-items: baseline;
   }
 }
 
-@media (min-width: 1024px) {
-  .frame {
+/* Like the resume PDF: a narrow label column on the left, the content on the right. */
+@media (min-width: 768px) {
+  .entry {
     display: grid;
-    grid-template-columns: var(--text-column) var(--visual-column);
-    column-gap: var(--column-gap);
+    grid-template-columns: var(--label-col) minmax(0, 1fr);
+    column-gap: var(--label-gap);
     align-items: start;
-    padding-top: 52px;
   }
 
-  .head {
-    position: sticky;
-    top: calc(var(--header-h) + 40px);
+  .entryHead {
+    display: contents;
   }
 
-  .body {
-    max-width: none;
-    margin-top: 0;
+  .entryTitle {
+    grid-area: 1 / 2;
   }
 
-  /* Pinned entries: the section label stays on top and each entry's heading sticks under it. */
-  .frame[data-pin] {
-    --pin-top: calc(var(--header-h) + 40px);
-    --label-h: calc(var(--fs-body) * var(--lh-body) + 8px + var(--fs-h2) * var(--lh-heading) + 28px);
-  }
-
-  .frame[data-pin] > .head {
-    z-index: 1;
+  .meta {
     grid-area: 1 / 1;
-    height: var(--label-h);
-    background: var(--bg);
-    box-shadow: 0 -40px 0 var(--bg);
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 0.5em;
   }
 
-  .frame[data-pin] > .body {
-    display: grid;
-    grid-area: 1 / 1 / 2 / -1;
-    grid-template-columns: subgrid;
+  .meta span:first-child {
+    color: var(--ink);
+    font-weight: 600;
   }
 
-  .frame[data-pin] .entry {
-    display: grid;
-    grid-column: 1 / -1;
-    grid-template-columns: subgrid;
-    align-items: start;
+  .entryBody {
+    grid-column: 2;
   }
 
+  /* Pinned entries keep the whole heading in the left column while the content scrolls. */
   .frame[data-pin] .entryHead {
     position: sticky;
-    top: calc(var(--pin-top) + var(--label-h));
-    margin-top: var(--label-h);
+    top: calc(var(--header-h) + 32px);
+    display: block;
+    grid-area: 1 / 1;
   }
 
-  .frame[data-pin] .entryTitle,
-  .frame[data-pin] .meta {
+  .frame[data-pin] .entryTitle {
     flex-direction: column;
     gap: 2px;
   }
 
   .frame[data-pin] .meta {
-    margin-top: 10px;
+    margin-top: 12px;
+  }
+
+  .frame[data-pin] .entryBody {
+    grid-area: 1 / 2;
   }
 
   .frame[data-pin] .entryBody > :first-child {
