@@ -1,5 +1,5 @@
 .stage {
-  --step-distance: 85svh;
+  --step-distance: 60svh;
 }
 
 .step {
@@ -143,28 +143,52 @@
   .stage[data-steps="many"]:not([data-mode="flow"]) .visual {
     opacity: 0;
     pointer-events: none;
-    transition:
-      opacity 220ms ease,
-      transform 520ms var(--ease-out);
   }
 
   .stage[data-steps="many"]:not([data-mode="flow"]) .copy {
     grid-area: 3 / 1;
     margin-top: calc(var(--p-space) * 0.6);
     transform: translateY(18px);
+    transition:
+      opacity 140ms ease,
+      transform 0s linear 140ms;
   }
 
+  /* A leaving capture stays put while it fades, then jumps to its parked side once hidden. */
   .stage[data-steps="many"]:not([data-mode="flow"]) .visual {
+    --slide: clamp(56px, 10svh, 112px);
     grid-area: 1 / 2 / 4 / 3;
     margin-top: 0;
-    transform: scale(0.985);
+    transform: translateY(var(--slide));
+    transition:
+      opacity 240ms ease 160ms,
+      transform 0s linear 400ms;
   }
 
-  .stage[data-steps="many"]:not([data-mode="flow"]) .step[data-active="true"] > .copy,
-  .stage[data-steps="many"]:not([data-mode="flow"]) .step[data-active="true"] > .visual {
+  .stage[data-steps="many"]:not([data-mode="flow"]) .step[data-state="past"] > .visual {
+    transform: translateY(calc(var(--slide) * -1));
+  }
+
+  .stage[data-steps="many"]:not([data-mode="flow"]) .step[data-state="current"] > .copy,
+  .stage[data-steps="many"]:not([data-mode="flow"]) .step[data-state="current"] > .visual {
     opacity: 1;
     pointer-events: auto;
     transform: none;
+  }
+
+  /* The arriving text waits for the leaving text to clear. */
+  .stage[data-steps="many"]:not([data-mode="flow"]) .step[data-state="current"] > .copy {
+    transition:
+      opacity 240ms ease 120ms,
+      transform 520ms var(--ease-out) 120ms;
+  }
+
+  /* The arriving capture slides in over the leaving one. */
+  .stage[data-steps="many"]:not([data-mode="flow"]) .step[data-state="current"] > .visual {
+    z-index: 1;
+    transition:
+      opacity 140ms ease-out,
+      transform 560ms var(--ease-out);
   }
 }
 

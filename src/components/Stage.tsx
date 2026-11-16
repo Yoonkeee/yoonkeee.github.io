@@ -175,7 +175,7 @@ export function Stage({ head, steps }: StageProps) {
             key={step.id}
             className={styles.step}
             data-step={index}
-            data-active={index === active}
+            data-state={index < active ? "past" : index === active ? "current" : "next"}
             style={{ "--step": index } as CSSProperties}
             onFocus={() => revealFocusedStep(index)}
           >
