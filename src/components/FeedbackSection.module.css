@@ -11,12 +11,6 @@
   font-size: var(--fs-h2);
 }
 
-.lead {
-  max-width: var(--measure);
-  margin-top: 14px;
-  color: var(--ink-muted);
-}
-
 .list {
   max-width: var(--measure);
   margin-top: clamp(32px, 5vw, 48px);

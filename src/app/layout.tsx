@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { profile } from "@/data/portfolio";
 import "./globals.css";
 
-const title = "김윤기 · 프론트엔드 개발자 포트폴리오";
-const description =
-  "React, Next.js, TypeScript로 기업용 SaaS와 실제 매장에서 쓰는 서비스를 만드는 프론트엔드 개발자 김윤기의 포트폴리오입니다.";
+const title = `${profile.name} 포트폴리오`;
+const description = `${profile.role} · ${profile.stack}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yoonkeee.github.io"),

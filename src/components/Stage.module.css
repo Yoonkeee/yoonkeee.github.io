@@ -11,15 +11,21 @@
   max-width: var(--measure);
 }
 
-.label {
+.title {
+  font-size: var(--fs-h4);
+}
+
+.title + .title {
+  margin-top: 14px;
+}
+
+.position {
+  display: block;
+  margin-bottom: 2px;
   color: var(--accent-ink);
   font-size: 0.9375rem;
   font-weight: 600;
-}
-
-.title {
-  margin-top: 8px;
-  font-size: var(--fs-h3);
+  letter-spacing: 0;
 }
 
 .body {

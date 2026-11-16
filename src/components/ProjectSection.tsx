@@ -1,5 +1,5 @@
 import type { EditorialProject, FigureProject, Point, Project, StageProject } from "@/data/portfolio";
-import { ArrowDownIcon } from "./icons";
+import { LinkedText } from "./LinkedText";
 import { ShotGroup, ShotNotes } from "./ShotGroup";
 import { Stage } from "./Stage";
 import { StageCopy } from "./StageCopy";
@@ -54,22 +54,15 @@ function ProjectBody({ project }: { project: Project }) {
   }
 }
 
-function PointItem({ point }: { point: Point }) {
+function PointList({ points }: { points: Point[] }) {
   return (
-    <li>
-      <h3 className={styles.pointTitle}>{point.title}</h3>
-      <p className={styles.pointBody}>{point.body}</p>
-      {point.link && <SectionLink href={point.link.href} label={point.link.label} />}
-    </li>
-  );
-}
-
-function SectionLink({ href, label }: { href: string; label: string }) {
-  return (
-    <a className={styles.link} href={href}>
-      {label}
-      <ArrowDownIcon width={16} height={16} />
-    </a>
+    <ul className={styles.points}>
+      {points.map((point) => (
+        <li key={point.body}>
+          <LinkedText text={point.body} link={point.link} />
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -84,19 +77,13 @@ function EditorialBody({ project }: { project: EditorialProject }) {
           </div>
         ))}
       </dl>
-      <ul className={styles.points}>
-        {project.points.map((point) => (
-          <PointItem key={point.title} point={point} />
-        ))}
-      </ul>
+      <PointList points={project.points} />
       <div className={styles.story}>
-        <h3 className={styles.pointTitle}>{project.story.title}</h3>
-        <div className={styles.storyText}>
-          {project.story.paragraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-          <SectionLink href={project.story.link.href} label={project.story.link.label} />
-        </div>
+        {project.story.paragraphs.map((paragraph) => (
+          <p key={paragraph}>
+            <LinkedText text={paragraph} link={project.story.link} />
+          </p>
+        ))}
       </div>
     </div>
   );
@@ -108,12 +95,8 @@ function FigureBody({ project }: { project: FigureProject }) {
   return (
     <div className={styles.split}>
       <div>
-        <ul className={styles.points}>
-          {project.points.map((point) => (
-            <PointItem key={point.title} point={point} />
-          ))}
-        </ul>
-        <ShotNotes frame="diagram" shots={shots} />
+        <PointList points={project.points} />
+        <ShotNotes shots={shots} />
       </div>
       <div className={styles.splitFigure}>
         <ShotGroup frame="diagram" shots={shots} />
@@ -125,12 +108,12 @@ function FigureBody({ project }: { project: FigureProject }) {
 function StageBody({ project }: { project: StageProject }) {
   return (
     <Stage
-      label={`${project.title} 주요 화면`}
+      label={project.title}
       steps={project.steps.map((step) => ({
-        id: step.label,
-        label: step.label,
+        id: step.shots.map((shot) => shot.image).join("+"),
+        label: step.shots.map((shot) => shot.caption).join(", "),
         copy: <StageCopy step={step} />,
-        visual: <ShotGroup frame={step.frame} shots={step.shots} />,
+        visual: <ShotGroup frame={step.frame} shots={step.shots} caption="none" />,
       }))}
     />
   );

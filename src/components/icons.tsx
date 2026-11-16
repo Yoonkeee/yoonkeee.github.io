@@ -40,24 +40,6 @@ export function GithubIcon(props: IconProps) {
   );
 }
 
-export function ArrowUpRightIcon(props: IconProps) {
-  return (
-    <Icon {...props}>
-      <path d="M7 7h10v10" />
-      <path d="M7 17 17 7" />
-    </Icon>
-  );
-}
-
-export function ArrowDownIcon(props: IconProps) {
-  return (
-    <Icon {...props}>
-      <path d="M12 5v14" />
-      <path d="m19 12-7 7-7-7" />
-    </Icon>
-  );
-}
-
 export function ExpandIcon(props: IconProps) {
   return (
     <Icon {...props}>

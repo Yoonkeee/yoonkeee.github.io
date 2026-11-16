@@ -2,9 +2,8 @@ import { profile } from "@/data/portfolio";
 import styles from "./SiteHeader.module.css";
 
 const LINKS = [
-  { href: "#projects", label: "프로젝트" },
-  { href: "#feedback", label: "피드백" },
-  { href: "#contact", label: "연락처" },
+  { href: "#toc", label: "목차" },
+  { href: "#feedback", label: "동료 피드백" },
 ];
 
 export function SiteHeader() {

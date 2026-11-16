@@ -88,12 +88,6 @@
     font-size: var(--fs-small);
     line-height: 1.6;
   }
-
-  .position {
-    margin-right: 8px;
-    color: var(--ink);
-    font-weight: 600;
-  }
 }
 
 .group[data-frame="screen"] .viewport {

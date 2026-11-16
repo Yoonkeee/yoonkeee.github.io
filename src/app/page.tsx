@@ -15,11 +15,9 @@ export default function Page() {
       <SiteHeader />
       <main id="main">
         <Hero />
-        <div id="projects">
-          {projects.map((project) => (
-            <ProjectSection key={project.id} project={project} />
-          ))}
-        </div>
+        {projects.map((project) => (
+          <ProjectSection key={project.id} project={project} />
+        ))}
         <FeedbackSection />
       </main>
       <Contact />

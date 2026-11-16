@@ -23,18 +23,18 @@ export function Hero() {
           <span>{profile.role}</span>
           <span className={styles.stack}>{profile.stack}</span>
         </p>
-        <p className={styles.lead}>{profile.lead}</p>
+        <p className={styles.lead}>{profile.intro}</p>
         <div className={styles.actions}>
           <a className={styles.primary} href={`mailto:${profile.email}`}>
             <MailIcon />
-            이메일 보내기
+            {profile.email}
           </a>
           <a className={styles.secondary} href={profile.github.url}>
             <GithubIcon />
-            GitHub
+            {profile.github.label}
           </a>
         </div>
-        <nav aria-label="목차" className={styles.toc}>
+        <nav id="toc" aria-label="목차" className={styles.toc}>
           <ol className={styles.index}>
             {entries.map((entry) => (
               <li key={entry.href}>

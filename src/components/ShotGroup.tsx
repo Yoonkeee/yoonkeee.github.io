@@ -12,19 +12,15 @@ const SIZES: Record<FrameKind, string> = {
   inline: "400px",
 };
 
-const PAIR_POSITIONS: Partial<Record<FrameKind, readonly [string, string]>> = {
-  inline: ["위", "아래"],
-  phone: ["왼쪽", "오른쪽"],
-};
-
 const INLINE_SCALE = 0.6;
 
 type ShotGroupProps = {
   frame: FrameKind;
   shots: Shot[];
+  caption?: "responsive" | "none";
 };
 
-export function ShotGroup({ frame, shots }: ShotGroupProps) {
+export function ShotGroup({ frame, shots, caption = "responsive" }: ShotGroupProps) {
   return (
     <div className={styles.group} data-frame={frame}>
       {shots.map((shot) => {
@@ -48,7 +44,7 @@ export function ShotGroup({ frame, shots }: ShotGroupProps) {
                 <ExpandIcon width={16} height={16} />
               </span>
             </ZoomButton>
-            <figcaption className={styles.caption}>{shot.caption}</figcaption>
+            {caption === "responsive" && <figcaption className={styles.caption}>{shot.caption}</figcaption>}
           </figure>
         );
       })}
@@ -56,16 +52,11 @@ export function ShotGroup({ frame, shots }: ShotGroupProps) {
   );
 }
 
-export function ShotNotes({ frame, shots }: ShotGroupProps) {
-  const positions = shots.length === 2 ? PAIR_POSITIONS[frame] : undefined;
-
+export function ShotNotes({ shots }: { shots: Shot[] }) {
   return (
     <ul className={styles.notes}>
-      {shots.map((shot, index) => (
-        <li key={shot.image}>
-          {positions && <span className={styles.position}>{positions[index]}</span>}
-          {shot.caption}
-        </li>
+      {shots.map((shot) => (
+        <li key={shot.image}>{shot.caption}</li>
       ))}
     </ul>
   );

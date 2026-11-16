@@ -1,5 +1,5 @@
 .hero {
-  padding-top: clamp(40px, 6vw, 80px);
+  padding-top: clamp(32px, 5vw, 64px);
 }
 
 .column {
@@ -80,7 +80,7 @@
 }
 
 .toc {
-  margin-top: clamp(40px, 5vw, 56px);
+  margin-top: clamp(32px, 4vw, 44px);
 }
 
 .index {
@@ -93,7 +93,7 @@
   grid-template-columns: 2.25rem minmax(0, 1fr);
   gap: 12px;
   align-items: baseline;
-  padding: 10px 8px;
+  padding: 8px;
   border-bottom: 1px solid var(--line);
   color: var(--ink);
   text-decoration: none;

@@ -89,39 +89,27 @@
   letter-spacing: -0.02em;
 }
 
-.points {
-  display: grid;
-  gap: 36px;
+.points li {
+  padding-block: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.points li:first-child {
+  padding-top: 0;
+  border-top: 0;
 }
 
 .metrics + .points {
-  margin-top: 48px;
-}
-
-.pointTitle {
-  font-size: var(--fs-h4);
-}
-
-.pointBody {
-  margin-top: 10px;
-}
-
-.link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 44px;
-  margin-top: 4px;
-  font-size: 0.9375rem;
-  font-weight: 600;
+  margin-top: 40px;
 }
 
 .story {
   --story-pad: clamp(24px, 4vw, 40px);
-  margin-top: clamp(48px, 6vw, 72px);
+  margin-top: clamp(24px, 4vw, 40px);
   padding: var(--story-pad);
   border-radius: var(--radius-lg);
   background: var(--accent-wash);
+  color: #2c3552;
 }
 
 @media (min-width: 1024px) {
@@ -130,17 +118,8 @@
   }
 }
 
-.storyText {
-  margin-top: 14px;
-  color: #2c3552;
-}
-
-.storyText p + p {
+.story p + p {
   margin-top: 1em;
-}
-
-.storyText .link {
-  margin-top: 12px;
 }
 
 .split {

@@ -1,34 +1,26 @@
 import { profile } from "@/data/portfolio";
-import { ArrowUpRightIcon, GithubIcon, MailIcon } from "./icons";
 import styles from "./Contact.module.css";
+
+const CONTACTS = [
+  { term: "Email", text: profile.email, href: `mailto:${profile.email}` },
+  { term: "GitHub", text: profile.github.label, href: profile.github.url },
+];
 
 export function Contact() {
   return (
     <footer id="contact" className={styles.contact}>
-      <div className="container">
-        <h2 className={styles.title}>연락처</h2>
-        <ul className={styles.links}>
-          <li>
-            <a className={styles.link} href={`mailto:${profile.email}`}>
-              <MailIcon width={24} height={24} />
-              {profile.email}
-            </a>
-          </li>
-          <li>
-            <a className={styles.link} href={profile.github.url}>
-              <GithubIcon width={24} height={24} />
-              {profile.github.label}
-            </a>
-          </li>
-        </ul>
-        <div className={styles.foot}>
-          <p>© 2026 {profile.name}</p>
-          <a className={styles.source} href={profile.repository}>
-            이 사이트의 소스 코드
-            <ArrowUpRightIcon width={14} height={14} />
-          </a>
-        </div>
-      </div>
+      <dl className={`container ${styles.list}`}>
+        {CONTACTS.map((contact) => (
+          <div key={contact.term}>
+            <dt>{contact.term}</dt>
+            <dd>
+              <a className={styles.link} href={contact.href}>
+                {contact.text}
+              </a>
+            </dd>
+          </div>
+        ))}
+      </dl>
     </footer>
   );
 }

@@ -3,9 +3,6 @@ import { ExpandIcon } from "./icons";
 import { ZoomButton } from "./Lightbox";
 import styles from "./FeedbackSection.module.css";
 
-const noteCount = feedback.filter((item) => item.type === "note").length;
-const reviewCount = feedback.length - noteCount;
-
 export function FeedbackSection() {
   return (
     <section id="feedback" className={`container ${styles.section}`} aria-labelledby="feedback-title">
@@ -13,10 +10,6 @@ export function FeedbackSection() {
         <h2 id="feedback-title" className={styles.title}>
           동료 피드백
         </h2>
-        <p className={styles.lead}>
-          피드백 {noteCount}건과 다면 평가 {reviewCount}건을 원문 그대로 옮겼습니다. 항목마다 원본 캡처를 볼 수
-          있습니다.
-        </p>
       </header>
       <div className={styles.list}>
         {feedback.map((item) => (
