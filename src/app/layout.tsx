@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { InPageLinks } from "@/components/InPageLinks";
+import { ScrollTopButton } from "@/components/ScrollTopButton";
 import "./globals.css";
 
 const fontUrl = "/fonts/pretendard-subset.woff2";
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body>
         {children}
+        <ScrollTopButton />
         <InPageLinks />
       </body>
     </html>
