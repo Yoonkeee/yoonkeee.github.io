@@ -1,13 +1,32 @@
 .project {
-  --text-column: minmax(0, 4fr);
-  --visual-column: minmax(0, 7fr);
-  --column-gap: clamp(48px, 5vw, 88px);
-  padding-top: var(--section-gap);
+  --text-column: minmax(0, 5fr);
+  --visual-column: minmax(0, 6fr);
+  --column-gap: clamp(40px, 4vw, 72px);
+  margin-top: var(--section-gap);
+}
+
+section.project {
+  scroll-margin-top: var(--header-h);
+}
+
+@media (min-width: 1024px) {
+  .project {
+    --p-pad: clamp(22px, 4svh, 52px);
+    --p-space: clamp(12px, 1.8svh, 20px);
+    --p-block: clamp(16px, 2.6svh, 32px);
+    --p-no: clamp(0.9375rem, 1.9svh, 1.125rem);
+    --p-title: clamp(1.5rem, 3.3svh, 2rem);
+    --p-sub: clamp(0.875rem, 1.8svh, 1rem);
+    --p-meta: clamp(0.875rem, 1.7svh, 0.9375rem);
+  }
+}
+
+.frame {
+  border-top: 1px solid var(--line);
 }
 
 .head {
-  padding-top: 40px;
-  border-top: 1px solid var(--line);
+  padding-top: var(--head-pad, var(--p-pad, 40px));
 }
 
 .head > * {
@@ -16,32 +35,34 @@
 
 .no {
   color: var(--accent-ink);
-  font-size: var(--fs-lead);
+  font-size: var(--p-no, var(--fs-lead));
   font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
 
 .title {
-  margin-top: 8px;
-  font-size: var(--fs-h2);
+  margin-top: calc(var(--p-space, 20px) * 0.4);
+  font-size: var(--p-title, var(--fs-h2));
 }
 
 .sub {
-  margin-top: 14px;
+  margin-top: calc(var(--p-space, 20px) * 0.7);
   color: var(--ink-muted);
+  font-size: var(--p-sub, inherit);
 }
 
 .summary {
-  margin-top: 28px;
+  margin-top: calc(var(--p-space, 20px) * 1.4);
   color: var(--ink);
-  font-size: var(--fs-lead);
+  font-size: var(--panel-summary, var(--fs-lead));
+  line-height: var(--panel-leading, inherit);
 }
 
 .meta {
   display: grid;
-  gap: 8px;
-  margin-top: 24px;
-  font-size: 0.9375rem;
+  gap: calc(var(--p-space, 20px) * 0.4);
+  margin-top: calc(var(--p-space, 20px) * 1.2);
+  font-size: var(--p-meta, 0.9375rem);
 }
 
 .meta div {
@@ -59,12 +80,13 @@
   font-variant-numeric: tabular-nums;
 }
 
-.body {
-  margin-top: clamp(48px, 6vw, 72px);
+.stackItem {
+  white-space: nowrap;
 }
 
 .column {
   max-width: var(--measure);
+  margin-top: clamp(48px, 6vw, 72px);
 }
 
 .metrics {
@@ -90,7 +112,7 @@
 }
 
 .points li {
-  padding-block: 18px;
+  padding-block: calc(var(--panel-space, 20px) * 0.9);
   border-top: 1px solid var(--line);
 }
 
@@ -120,22 +142,4 @@
 
 .story p + p {
   margin-top: 1em;
-}
-
-.split {
-  display: grid;
-  gap: 40px;
-}
-
-@media (min-width: 1024px) {
-  .split {
-    grid-template-columns: var(--text-column) var(--visual-column);
-    column-gap: var(--column-gap);
-    align-items: start;
-  }
-
-  .splitFigure {
-    position: sticky;
-    top: calc(var(--header-h) + 32px);
-  }
 }

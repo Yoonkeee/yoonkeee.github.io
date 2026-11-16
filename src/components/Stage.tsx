@@ -11,7 +11,7 @@ export type StageStepView = {
 };
 
 type StageProps = {
-  label: string;
+  head: ReactNode;
   steps: StageStepView[];
 };
 
@@ -24,7 +24,7 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
-export function Stage({ label, steps }: StageProps) {
+export function Stage({ head, steps }: StageProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
   const layoutRef = useRef<PinnedLayout>({ pinned: false, top: 0 });
@@ -39,10 +39,28 @@ export function Stage({ label, steps }: StageProps) {
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let frame = 0;
+    let mounted = true;
 
-    const readLayout = () => {
+    // The stylesheet pins the stage by default. Measure that pinned layout and
+    // fall back to the document flow when a text or image block does not fit.
+    const fit = () => {
+      if (root.dataset.mode === "flow") {
+        // Hold the height so the page does not move while the pinned layout is measured.
+        root.style.height = `${root.offsetHeight}px`;
+        delete root.dataset.mode;
+      }
       const style = getComputedStyle(sticky);
-      layoutRef.current = { pinned: style.position === "sticky", top: parseFloat(style.top) || 0 };
+      const pinnable = style.position === "sticky";
+      const top = parseFloat(style.top) || 0;
+      const limit = sticky.clientHeight - parseFloat(style.paddingBottom) + 1;
+      const fits =
+        pinnable &&
+        [...root.querySelectorAll<HTMLElement>("[data-step] > *")].every(
+          (block) => block.offsetTop + block.offsetHeight <= limit,
+        );
+      if (pinnable && !fits) root.dataset.mode = "flow";
+      root.style.removeProperty("height");
+      layoutRef.current = { pinned: fits, top };
     };
 
     const pan = (index: number, within: number) => {
@@ -80,7 +98,7 @@ export function Stage({ label, steps }: StageProps) {
     };
 
     const relayout = () => {
-      readLayout();
+      fit();
       if (!layoutRef.current.pinned) {
         for (const viewport of root.querySelectorAll<HTMLElement>("[data-pan]")) viewport.style.removeProperty("--pan-y");
       }
@@ -88,9 +106,17 @@ export function Stage({ label, steps }: StageProps) {
     };
 
     relayout();
+    // Unpinning changes the height of this stage, so a link that opened the page at an anchor is re-aligned once.
+    if (root.dataset.mode === "flow" && location.hash) {
+      document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView({ behavior: "instant" });
+    }
+    document.fonts.ready.then(() => {
+      if (mounted) relayout();
+    });
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", relayout);
     return () => {
+      mounted = false;
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", relayout);
@@ -118,36 +144,39 @@ export function Stage({ label, steps }: StageProps) {
     <div
       ref={rootRef}
       className={styles.stage}
+      data-steps={count > 1 ? "many" : "one"}
       style={{ "--steps": count } as CSSProperties}
-      role="group"
-      aria-label={label}
     >
       <div ref={stickyRef} className={styles.sticky}>
-        <div className={styles.nav}>
-          <ol className={styles.dots}>
-            {steps.map((step, index) => (
-              <li key={step.id}>
-                <button
-                  type="button"
-                  className={styles.dot}
-                  data-state={index < active ? "done" : index === active ? "current" : "todo"}
-                  aria-current={index === active ? "step" : undefined}
-                  aria-label={`${index + 1}단계: ${step.label}`}
-                  onClick={() => goTo(index, "auto")}
-                />
-              </li>
-            ))}
-          </ol>
-          <p className={styles.count} aria-hidden="true">
-            {active + 1} / {count}
-          </p>
-        </div>
+        <div className={styles.head}>{head}</div>
+        {count > 1 && (
+          <div className={styles.nav}>
+            <ol className={styles.dots}>
+              {steps.map((step, index) => (
+                <li key={step.id}>
+                  <button
+                    type="button"
+                    className={styles.dot}
+                    data-state={index < active ? "done" : index === active ? "current" : "todo"}
+                    aria-current={index === active ? "step" : undefined}
+                    aria-label={`${index + 1}단계: ${step.label}`}
+                    onClick={() => goTo(index, "auto")}
+                  />
+                </li>
+              ))}
+            </ol>
+            <p className={styles.count} aria-hidden="true">
+              {active + 1} / {count}
+            </p>
+          </div>
+        )}
         {steps.map((step, index) => (
           <div
             key={step.id}
             className={styles.step}
             data-step={index}
             data-active={index === active}
+            style={{ "--step": index } as CSSProperties}
             onFocus={() => revealFocusedStep(index)}
           >
             <div className={styles.copy}>{step.copy}</div>

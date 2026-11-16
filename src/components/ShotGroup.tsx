@@ -14,13 +14,7 @@ const SIZES: Record<FrameKind, string> = {
 
 const INLINE_SCALE = 0.6;
 
-type ShotGroupProps = {
-  frame: FrameKind;
-  shots: Shot[];
-  caption?: "responsive" | "none";
-};
-
-export function ShotGroup({ frame, shots, caption = "responsive" }: ShotGroupProps) {
+export function ShotGroup({ frame, shots }: { frame: FrameKind; shots: Shot[] }) {
   return (
     <div className={styles.group} data-frame={frame}>
       {shots.map((shot) => {
@@ -44,20 +38,9 @@ export function ShotGroup({ frame, shots, caption = "responsive" }: ShotGroupPro
                 <ExpandIcon width={16} height={16} />
               </span>
             </ZoomButton>
-            {caption === "responsive" && <figcaption className={styles.caption}>{shot.caption}</figcaption>}
           </figure>
         );
       })}
     </div>
-  );
-}
-
-export function ShotNotes({ shots }: { shots: Shot[] }) {
-  return (
-    <ul className={styles.notes}>
-      {shots.map((shot) => (
-        <li key={shot.image}>{shot.caption}</li>
-      ))}
-    </ul>
   );
 }
