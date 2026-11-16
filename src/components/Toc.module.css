@@ -16,6 +16,7 @@
   padding: 8px;
   border-bottom: 1px solid var(--line);
   color: var(--ink);
+  font-size: 1.1875rem;
   text-decoration: none;
   transition: background-color 160ms ease;
 }
@@ -47,7 +48,7 @@
 
 .note {
   color: var(--ink-muted);
-  font-size: var(--fs-small);
+  font-size: 0.9375rem;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
