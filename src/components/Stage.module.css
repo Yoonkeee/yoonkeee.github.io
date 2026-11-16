@@ -14,33 +14,6 @@
   max-width: var(--measure);
 }
 
-/* Says what the capture shows; kept quieter than the body so it does not read as its heading. */
-.caption {
-  display: flex;
-  gap: 8px;
-  color: var(--ink-muted);
-  font-size: var(--p-meta, 0.9375rem);
-  line-height: 1.5;
-}
-
-.copy > ul + .caption {
-  margin-top: var(--p-space, 16px);
-}
-
-.caption + .caption {
-  margin-top: 4px;
-}
-
-.captionIcon {
-  flex: none;
-  margin-top: calc(0.5lh - 8px);
-}
-
-.position {
-  color: var(--accent-ink);
-  font-weight: 600;
-}
-
 .visual {
   margin-top: 20px;
 }
@@ -106,7 +79,8 @@
 
 @media (min-width: 1024px) and (scripting: enabled) {
   .stage[data-steps="many"]:not([data-mode="flow"]) {
-    --frame-max: calc(100svh - var(--header-h) - var(--p-pad) * 2 - 4px);
+    /* Leaves room under each capture for a caption of up to two lines. */
+    --frame-max: calc(100svh - var(--header-h) - var(--p-pad) * 2 - 4px - 10px - var(--p-meta) * 3);
     --phone-max: var(--frame-max);
     height: calc(100svh - var(--header-h) + var(--steps) * var(--step-distance));
     margin-bottom: calc(var(--p-pad) * -1);

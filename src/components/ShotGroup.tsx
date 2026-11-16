@@ -3,6 +3,7 @@ import { imageOf, type FrameKind, type Shot } from "@/data/portfolio";
 import { ExpandIcon } from "./icons";
 import { ZoomButton } from "./Lightbox";
 import { Picture } from "./Picture";
+import { ShotCaption } from "./ShotCaptions";
 import styles from "./ShotGroup.module.css";
 
 const SIZES: Record<FrameKind, string> = {
@@ -38,6 +39,7 @@ export function ShotGroup({ frame, shots }: { frame: FrameKind; shots: Shot[] })
                 <ExpandIcon width={16} height={16} />
               </span>
             </ZoomButton>
+            <ShotCaption caption={shot.caption} />
           </figure>
         );
       })}

@@ -1,4 +1,6 @@
 .group {
+  --caption-gap: 10px;
+  --caption-leading: 1.5;
   display: grid;
   gap: 24px;
 }
@@ -62,6 +64,21 @@
   transform: scale(0.92);
 }
 
+/* Says what the capture above it shows; kept quieter than the body so it does not read as a heading. */
+.caption {
+  display: flex;
+  gap: 8px;
+  margin-top: var(--caption-gap);
+  color: var(--ink-muted);
+  font-size: var(--p-meta, 0.9375rem);
+  line-height: var(--caption-leading);
+}
+
+.captionIcon {
+  flex: none;
+  margin-top: calc(0.5lh - 8px);
+}
+
 .group[data-frame="screen"] .viewport {
   max-height: var(--frame-max, none);
 }
@@ -94,9 +111,11 @@
   background: var(--accent-wash);
 }
 
-.group[data-frame="inline"] .frame {
+.group[data-frame="inline"] .figure {
   width: min(100%, var(--shot-width));
-  margin-inline: auto;
+}
+
+.group[data-frame="inline"] .frame {
   border-radius: var(--radius-md);
   box-shadow: 0 1px 2px rgb(16 24 40 / 0.05), 0 8px 20px -10px rgb(16 24 40 / 0.16);
 }

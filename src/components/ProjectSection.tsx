@@ -1,7 +1,6 @@
 import { Fragment, type ReactNode } from "react";
 import type { EditorialProject, Point, Project, StageStep } from "@/data/portfolio";
 import { LinkedText } from "./LinkedText";
-import { ShotCaptions } from "./ShotCaptions";
 import { ShotGroup } from "./ShotGroup";
 import { Stage, type StageStepView } from "./Stage";
 import styles from "./ProjectSection.module.css";
@@ -83,12 +82,7 @@ function stepView(step: StageStep): StageStepView {
   return {
     id: step.shots.map((shot) => shot.image).join("+"),
     label: step.shots.map((shot) => shot.caption).join(", "),
-    copy: (
-      <>
-        {points.length > 0 && <PointList points={points} />}
-        <ShotCaptions step={step} />
-      </>
-    ),
+    copy: points.length > 0 && <PointList points={points} />,
     visual: <ShotGroup frame={step.frame} shots={step.shots} />,
   };
 }
