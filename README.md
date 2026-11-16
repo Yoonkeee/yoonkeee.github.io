@@ -1,0 +1,41 @@
+# yoonkeee.github.io
+
+김윤기의 프론트엔드 개발자 포트폴리오입니다. https://yoonkeee.github.io
+
+Next.js(App Router) 정적 내보내기, TypeScript, CSS Modules로 만들었습니다. 런타임 의존성은 `next`, `react`, `react-dom`, `pretendard`뿐입니다.
+
+## 실행
+
+```sh
+npm install
+npm run dev        # http://localhost:4321
+npm run build      # out/ 에 정적 파일 생성
+npm run typecheck
+```
+
+`main`에 push하면 `.github/workflows/deploy.yml`이 빌드해서 GitHub Pages에 배포합니다.
+
+## 구조
+
+| 경로 | 내용 |
+|---|---|
+| `src/data/portfolio.ts` | 프로젝트, 피드백, 연락처 문구 (화면에 나오는 모든 글) |
+| `src/data/images.json` | 이미지 크기 목록 (`npm run images`가 생성) |
+| `src/components/Stage.tsx` | 스크롤 단계마다 글과 캡처가 바뀌는 고정 무대 |
+| `src/components/ShotGroup.tsx` | 캡처 프레임 (화면, 구조도, 휴대폰, 작은 캡처) |
+| `src/components/Lightbox.tsx` | `<dialog>` 기반 확대 보기 |
+| `src/app/globals.css` | 디자인 토큰 |
+| `scripts/optimize-images.ts` | 원본 이미지를 webp로 변환 |
+| `DESIGN.md` | 색, 글자, 배치, 움직임 기준 |
+
+## 스크롤 무대
+
+화면이 1024px 이상이면 프로젝트의 여러 캡처를 한 자리에 고정하고, 스크롤 진행률로 단계를 바꿉니다. 모바일이거나 스크립트가 꺼져 있으면 같은 내용이 글 다음에 캡처가 오는 순서로 쌓입니다. `prefers-reduced-motion`이 켜져 있으면 이동 없이 투명도만 바뀝니다. 자세한 규칙은 `DESIGN.md` 4장에 있습니다.
+
+## 이미지 다시 만들기
+
+```sh
+bun scripts/optimize-images.ts <원본 이미지 폴더>
+```
+
+스크립트 안의 `PUBLISHED` 목록에 있는 파일만 `public/images/`로 변환합니다.
