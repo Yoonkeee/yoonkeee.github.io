@@ -11,6 +11,8 @@ section.project {
     --p-pad: clamp(22px, 4svh, 52px);
     --p-space: clamp(12px, 1.8svh, 20px);
     --p-block: clamp(16px, 2.6svh, 32px);
+    /* Space a pinned stage leaves under its last step; unpinned projects end with the same. */
+    --p-tail: clamp(40px, calc(100svh - var(--header-h) - 730px), 280px);
     --p-no: clamp(0.9375rem, 1.9svh, 1.125rem);
     --p-title: clamp(1.5rem, 3.3svh, 2rem);
     --p-sub: clamp(0.875rem, 1.8svh, 1rem);
@@ -138,7 +140,7 @@ section.project {
     grid-template-columns: var(--text-column) var(--visual-column);
     column-gap: var(--column-gap);
     align-items: start;
-    padding-top: var(--p-pad);
+    padding-block: var(--p-pad) var(--p-tail);
   }
 
   .editorial > .head {
