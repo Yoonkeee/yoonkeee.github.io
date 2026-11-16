@@ -1,5 +1,14 @@
 .hero {
-  padding-top: clamp(32px, 5vw, 64px);
+  --hero-pad: clamp(32px, 5vw, 64px);
+  display: grid;
+  grid-template-rows: minmax(var(--hero-pad), 1fr) auto minmax(var(--hero-pad), 1fr);
+  min-height: calc(100svh - var(--header-h));
+  margin-bottom: calc(var(--hero-pad) * -1);
+}
+
+.column {
+  grid-row: 2;
+  min-width: 0;
 }
 
 .column > * {
