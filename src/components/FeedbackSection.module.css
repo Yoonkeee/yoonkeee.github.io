@@ -1,14 +1,38 @@
 .section {
+  /* Height of the pinned section title: one heading line plus its 12px and 10px padding. */
+  --title-h: calc(var(--fs-h2) * var(--lh-heading) + 22px);
   padding-top: var(--section-gap);
 }
 
-.head {
+.frame {
   padding-top: 40px;
   border-top: 1px solid var(--line);
 }
 
+/* The title pins against the frame, so its wrapper must not be its containing block. */
+.head {
+  display: contents;
+}
+
+/* Stays under the site header while the feedback list scrolls; the margins cancel the padding so the resting spacing is unchanged. */
 .title {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 2;
+  margin-block: -4px -10px;
+  padding-block: 12px 10px;
+  background: var(--bg);
   font-size: var(--fs-h2);
+}
+
+/* Fades the lines sliding under the pinned heading instead of cutting them mid-glyph. */
+.title::after {
+  position: absolute;
+  inset: 100% 0 auto;
+  height: 10px;
+  background: linear-gradient(var(--bg), transparent);
+  content: "";
+  pointer-events: none;
 }
 
 .list {
@@ -17,6 +41,8 @@
 }
 
 .entry {
+  /* Lands an entry link below the pinned title rather than under it. */
+  scroll-margin-top: calc(var(--title-h) + 24px);
   padding-block: clamp(48px, 6vw, 72px) clamp(36px, 4.5vw, 56px);
   border-top: 1px solid var(--line);
 }

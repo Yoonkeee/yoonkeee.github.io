@@ -6,15 +6,17 @@ import styles from "./FeedbackSection.module.css";
 export function FeedbackSection() {
   return (
     <section id="feedback" className={`container ${styles.section}`} aria-labelledby="feedback-title">
-      <header className={styles.head}>
-        <h2 id="feedback-title" className={styles.title}>
-          동료 피드백
-        </h2>
-      </header>
-      <div className={styles.list}>
-        {feedback.map((item) => (
-          <Entry key={item.id} item={item} />
-        ))}
+      <div className={styles.frame}>
+        <header className={styles.head}>
+          <h2 id="feedback-title" className={styles.title}>
+            동료 피드백
+          </h2>
+        </header>
+        <div className={styles.list}>
+          {feedback.map((item) => (
+            <Entry key={item.id} item={item} />
+          ))}
+        </div>
       </div>
     </section>
   );
