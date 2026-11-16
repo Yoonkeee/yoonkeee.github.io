@@ -1,7 +1,4 @@
 .project {
-  --text-column: minmax(0, 5fr);
-  --visual-column: minmax(0, 6fr);
-  --column-gap: clamp(40px, 4vw, 72px);
   margin-top: var(--section-gap);
 }
 
@@ -132,4 +129,30 @@ section.project {
 
 .story p + p {
   margin-top: 1em;
+}
+
+@media (min-width: 1024px) {
+  .editorial {
+    --head-pad: 0px;
+    display: grid;
+    grid-template-columns: var(--text-column) var(--visual-column);
+    column-gap: var(--column-gap);
+    align-items: start;
+    padding-top: var(--p-pad);
+  }
+
+  .editorial > .head {
+    position: sticky;
+    top: calc(var(--header-h) + var(--p-pad));
+  }
+
+  .editorial > .column {
+    max-width: none;
+    margin-top: 0;
+  }
+
+  .editorial .metrics {
+    padding-top: 0;
+    border-top: 0;
+  }
 }

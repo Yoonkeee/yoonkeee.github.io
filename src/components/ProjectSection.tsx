@@ -63,10 +63,10 @@ function ProjectBody({ project, head }: { project: Project; head: ReactNode }) {
   switch (project.kind) {
     case "editorial":
       return (
-        <>
+        <div className={styles.editorial}>
           {head}
           <EditorialBody project={project} />
-        </>
+        </div>
       );
     case "figure":
       return (
