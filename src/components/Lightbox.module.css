@@ -1,0 +1,91 @@
+.dialog {
+  width: 100vw;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgb(15 18 26 / 0.92);
+  color: #eef0f4;
+}
+
+.dialog::backdrop {
+  background: rgb(15 18 26 / 0.6);
+}
+
+.dialog[open] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dialog[open] {
+    animation: fade-in 180ms ease-out;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.bar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px var(--gutter);
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgb(255 255 255 / 0.28);
+  border-radius: 50%;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.close:hover {
+  background: rgb(255 255 255 / 0.12);
+}
+
+.close:active {
+  background: rgb(255 255 255 / 0.2);
+}
+
+.close:focus-visible {
+  outline-color: #ffffff;
+}
+
+.scroller {
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 0 var(--gutter) 32px;
+  scrollbar-color: rgb(255 255 255 / 0.4) transparent;
+  scrollbar-width: thin;
+}
+
+.figure {
+  width: max(100%, min(var(--natural-width) / 2, 880px));
+  max-width: min(var(--natural-width), 1400px);
+  margin-inline: auto;
+}
+
+.figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  background: #ffffff;
+}
+
+.figure figcaption {
+  margin-top: 14px;
+  color: #c9ced8;
+  font-size: var(--fs-small);
+  text-align: center;
+}

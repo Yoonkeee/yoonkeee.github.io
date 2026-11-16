@@ -1,0 +1,132 @@
+.hero {
+  padding-top: clamp(56px, 9vw, 128px);
+}
+
+.grid {
+  display: grid;
+  gap: 56px;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    column-gap: clamp(56px, 7vw, 112px);
+    align-items: end;
+  }
+}
+
+.name {
+  font-size: var(--fs-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.role {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.75em;
+  margin-top: 14px;
+  color: var(--ink);
+  font-size: var(--fs-lead);
+  font-weight: 600;
+}
+
+.stack {
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+
+.lead {
+  max-width: 34rem;
+  margin-top: 24px;
+  font-size: var(--fs-lead);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 36px;
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding-inline: 22px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    transform 160ms var(--ease-out);
+}
+
+.primary {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.primary:hover {
+  background: #172e70;
+}
+
+.secondary {
+  border-color: #808999;
+  color: var(--ink);
+}
+
+.secondary:hover {
+  background: var(--surface);
+}
+
+.primary:active,
+.secondary:active {
+  transform: scale(0.98);
+}
+
+.index {
+  border-top: 1px solid var(--ink);
+}
+
+.index a {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: baseline;
+  padding: 14px 8px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+  transition: background-color 160ms ease;
+}
+
+.index a:hover {
+  background: var(--accent-wash);
+}
+
+.index a:active {
+  background: #dfe6f8;
+}
+
+.no {
+  color: var(--accent-ink);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.entry {
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+.when {
+  color: var(--ink-muted);
+  font-size: var(--fs-small);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}

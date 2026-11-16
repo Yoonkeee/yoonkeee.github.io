@@ -1,0 +1,165 @@
+.stage {
+  --step-distance: 85svh;
+  --stage-gap: clamp(48px, 5vw, 88px);
+}
+
+.step + .step {
+  margin-top: clamp(64px, 10vw, 104px);
+}
+
+.copy {
+  max-width: 40rem;
+}
+
+.label {
+  color: var(--accent-ink);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.title {
+  margin-top: 8px;
+  font-size: var(--fs-h3);
+}
+
+.body {
+  margin-top: 16px;
+}
+
+.visual {
+  margin-top: 28px;
+}
+
+.nav {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .step {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+    column-gap: var(--stage-gap);
+    align-items: center;
+  }
+
+  .visual {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1024px) and (min-height: 640px) and (scripting: enabled) {
+  .stage {
+    --frame-max: calc(100svh - var(--header-h) - 168px);
+    --phone-max: calc(100svh - var(--header-h) - 224px);
+    height: calc(100svh - var(--header-h) + var(--steps) * var(--step-distance));
+  }
+
+  .sticky {
+    position: sticky;
+    top: var(--header-h);
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+    grid-template-rows: minmax(0, 1fr);
+    column-gap: var(--stage-gap);
+    align-items: center;
+    height: calc(100svh - var(--header-h));
+  }
+
+  .step {
+    display: contents;
+  }
+
+  .copy,
+  .visual {
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 220ms ease,
+      transform 520ms var(--ease-out);
+  }
+
+  .copy {
+    grid-area: 1 / 1;
+    transform: translateY(18px);
+  }
+
+  .visual {
+    grid-area: 1 / 2;
+    transform: scale(0.985);
+  }
+
+  .step[data-active="true"] > .copy,
+  .step[data-active="true"] > .visual {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  .nav {
+    grid-area: 1 / 1;
+    align-self: end;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copy,
+  .visual {
+    transform: none !important;
+    transition: opacity 120ms linear !important;
+  }
+}
+
+.dots {
+  display: flex;
+}
+
+.dot {
+  position: relative;
+  display: block;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.dot::before,
+.dot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  left: 4px;
+  height: 3px;
+  margin-top: -1.5px;
+  border-radius: 2px;
+}
+
+.dot::before {
+  background: #808999;
+}
+
+.dot:hover::before {
+  background: var(--ink-muted);
+}
+
+.dot[data-state="done"]::before {
+  background: var(--ink);
+}
+
+.dot[data-state="current"]::after {
+  background: var(--ink);
+  transform: scaleX(var(--step-progress, 0));
+  transform-origin: left center;
+}
+
+.count {
+  color: var(--ink-muted);
+  font-size: var(--fs-small);
+  font-variant-numeric: tabular-nums;
+}

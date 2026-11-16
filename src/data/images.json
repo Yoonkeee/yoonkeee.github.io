@@ -1,0 +1,212 @@
+{
+  "i18n-architecture": {
+    "large": {
+      "src": "/images/i18n-architecture.webp",
+      "width": 1840,
+      "height": 1360
+    },
+    "small": {
+      "src": "/images/i18n-architecture-sm.webp",
+      "width": 1000,
+      "height": 739
+    }
+  },
+  "work-status-team": {
+    "large": {
+      "src": "/images/work-status-team.webp",
+      "width": 2000,
+      "height": 2208
+    },
+    "small": {
+      "src": "/images/work-status-team-sm.webp",
+      "width": 1000,
+      "height": 1104
+    }
+  },
+  "slack-profile-status": {
+    "large": {
+      "src": "/images/slack-profile-status.webp",
+      "width": 674,
+      "height": 449
+    }
+  },
+  "slack-name-status": {
+    "large": {
+      "src": "/images/slack-name-status.webp",
+      "width": 440,
+      "height": 55
+    }
+  },
+  "work-status-worktime": {
+    "large": {
+      "src": "/images/work-status-worktime.webp",
+      "width": 2000,
+      "height": 1875
+    },
+    "small": {
+      "src": "/images/work-status-worktime-sm.webp",
+      "width": 1000,
+      "height": 937
+    }
+  },
+  "ai-usage-architecture": {
+    "large": {
+      "src": "/images/ai-usage-architecture.webp",
+      "width": 1800,
+      "height": 1000
+    },
+    "small": {
+      "src": "/images/ai-usage-architecture-sm.webp",
+      "width": 1000,
+      "height": 555
+    }
+  },
+  "ai-usage-dashboard": {
+    "large": {
+      "src": "/images/ai-usage-dashboard.webp",
+      "width": 1600,
+      "height": 1000
+    },
+    "small": {
+      "src": "/images/ai-usage-dashboard-sm.webp",
+      "width": 1000,
+      "height": 625
+    }
+  },
+  "ai-usage-weekly-peak": {
+    "large": {
+      "src": "/images/ai-usage-weekly-peak.webp",
+      "width": 2000,
+      "height": 1740
+    },
+    "small": {
+      "src": "/images/ai-usage-weekly-peak-sm.webp",
+      "width": 1000,
+      "height": 870
+    }
+  },
+  "fit-studio-architecture": {
+    "large": {
+      "src": "/images/fit-studio-architecture.webp",
+      "width": 2000,
+      "height": 1061
+    },
+    "small": {
+      "src": "/images/fit-studio-architecture-sm.webp",
+      "width": 1000,
+      "height": 530
+    }
+  },
+  "petcare-timetable": {
+    "large": {
+      "src": "/images/petcare-timetable.webp",
+      "width": 690,
+      "height": 1500
+    }
+  },
+  "petcare-hotel-calendar": {
+    "large": {
+      "src": "/images/petcare-hotel-calendar.webp",
+      "width": 690,
+      "height": 1500
+    }
+  },
+  "petcare-hotel-detail": {
+    "large": {
+      "src": "/images/petcare-hotel-detail.webp",
+      "width": 690,
+      "height": 1500
+    }
+  },
+  "petcare-message": {
+    "large": {
+      "src": "/images/petcare-message.webp",
+      "width": 690,
+      "height": 1500
+    }
+  },
+  "feedback-tools": {
+    "large": {
+      "src": "/images/feedback-tools.webp",
+      "width": 1956,
+      "height": 470
+    },
+    "small": {
+      "src": "/images/feedback-tools-sm.webp",
+      "width": 1000,
+      "height": 240
+    }
+  },
+  "feedback-issue-maker": {
+    "large": {
+      "src": "/images/feedback-issue-maker.webp",
+      "width": 1956,
+      "height": 336
+    },
+    "small": {
+      "src": "/images/feedback-issue-maker-sm.webp",
+      "width": 1000,
+      "height": 171
+    }
+  },
+  "feedback-ai": {
+    "large": {
+      "src": "/images/feedback-ai.webp",
+      "width": 1956,
+      "height": 490
+    },
+    "small": {
+      "src": "/images/feedback-ai-sm.webp",
+      "width": 1000,
+      "height": 250
+    }
+  },
+  "feedback-culture": {
+    "large": {
+      "src": "/images/feedback-culture.webp",
+      "width": 1956,
+      "height": 475
+    },
+    "small": {
+      "src": "/images/feedback-culture-sm.webp",
+      "width": 1000,
+      "height": 242
+    }
+  },
+  "feedback-qa": {
+    "large": {
+      "src": "/images/feedback-qa.webp",
+      "width": 1391,
+      "height": 518
+    },
+    "small": {
+      "src": "/images/feedback-qa-sm.webp",
+      "width": 1000,
+      "height": 372
+    }
+  },
+  "feedback-comm": {
+    "large": {
+      "src": "/images/feedback-comm.webp",
+      "width": 1391,
+      "height": 424
+    },
+    "small": {
+      "src": "/images/feedback-comm-sm.webp",
+      "width": 1000,
+      "height": 304
+    }
+  },
+  "feedback-code": {
+    "large": {
+      "src": "/images/feedback-code.webp",
+      "width": 1391,
+      "height": 444
+    },
+    "small": {
+      "src": "/images/feedback-code-sm.webp",
+      "width": 1000,
+      "height": 319
+    }
+  }
+}
