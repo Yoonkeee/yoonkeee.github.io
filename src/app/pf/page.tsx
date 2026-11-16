@@ -10,12 +10,6 @@ import { pageMetadata, ROUTES } from "@/data/site";
 
 export const metadata = pageMetadata(`${profile.name} 포트폴리오`, ROUTES.portfolio);
 
-const HEADER_LINKS = [
-  { href: "#toc", label: "목차" },
-  { href: "#feedback", label: "동료 피드백" },
-  { href: ROUTES.resume, label: "이력서" },
-];
-
 const TOC = [
   ...projects.map((project) => ({ href: `#${project.id}`, no: project.no, title: project.title, note: project.since })),
   {
@@ -32,7 +26,7 @@ export default function PortfolioPage() {
       <a className="skip-link" href="#main">
         본문으로 건너뛰기
       </a>
-      <SiteHeader links={HEADER_LINKS} />
+      <SiteHeader current={ROUTES.portfolio} />
       <main id="main">
         <Hero>
           <Toc entries={TOC} />

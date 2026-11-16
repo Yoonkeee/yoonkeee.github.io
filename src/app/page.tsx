@@ -18,7 +18,7 @@ export default function HomePage() {
       <a className="skip-link" href="#main">
         본문으로 건너뛰기
       </a>
-      <SiteHeader links={PAGES.map((page) => ({ href: page.href, label: page.title }))} />
+      <SiteHeader />
       <main id="main">
         <Hero>
           <PageChoice pages={PAGES} />

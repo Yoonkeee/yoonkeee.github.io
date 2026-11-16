@@ -18,11 +18,6 @@ import styles from "./page.module.css";
 
 export const metadata = pageMetadata(`${profile.name} 이력서`, ROUTES.resume);
 
-const HEADER_LINKS = [
-  { href: "#toc", label: "목차" },
-  { href: ROUTES.portfolio, label: "포트폴리오" },
-];
-
 const TOC = resumeSections.map((section) => ({ href: `#${section.id}`, no: section.no, title: section.title }));
 
 export default function ResumePage() {
@@ -31,7 +26,7 @@ export default function ResumePage() {
       <a className="skip-link" href="#main">
         본문으로 건너뛰기
       </a>
-      <SiteHeader links={HEADER_LINKS} />
+      <SiteHeader current={ROUTES.resume} />
       <main id="main">
         <Hero>
           <Toc entries={TOC} />

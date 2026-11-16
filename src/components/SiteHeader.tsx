@@ -3,9 +3,12 @@ import { profile } from "@/data/portfolio";
 import { ROUTES } from "@/data/site";
 import styles from "./SiteHeader.module.css";
 
-export type HeaderLink = { href: string; label: string };
+const PAGES = [
+  { href: ROUTES.resume, label: "이력서" },
+  { href: ROUTES.portfolio, label: "포트폴리오" },
+];
 
-export function SiteHeader({ links }: { links: HeaderLink[] }) {
+export function SiteHeader({ current }: { current?: string }) {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
@@ -14,9 +17,11 @@ export function SiteHeader({ links }: { links: HeaderLink[] }) {
         </Link>
         <nav aria-label="주요 메뉴">
           <ul className={styles.links}>
-            {links.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href}>{link.label}</Link>
+            {PAGES.map((page) => (
+              <li key={page.href}>
+                <Link href={page.href} aria-current={page.href === current ? "page" : undefined}>
+                  {page.label}
+                </Link>
               </li>
             ))}
           </ul>
