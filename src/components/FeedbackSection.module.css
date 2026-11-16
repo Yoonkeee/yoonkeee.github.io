@@ -98,7 +98,9 @@
   white-space: pre-line;
 }
 
+/* Keeps a keyboard-focused button clear of the pinned title. */
 .source {
+  scroll-margin-top: calc(var(--title-h) + 8px);
   display: inline-flex;
   align-items: center;
   gap: 8px;
