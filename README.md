@@ -2,7 +2,7 @@
 
 김윤기의 프론트엔드 개발자 포트폴리오입니다. https://yoonkeee.github.io
 
-Next.js(App Router) 정적 내보내기, TypeScript, CSS Modules로 만들었습니다. 런타임 의존성은 `next`, `react`, `react-dom`, `pretendard`뿐입니다.
+Next.js(App Router) 정적 내보내기, TypeScript, CSS Modules로 만들었습니다. 런타임 의존성은 `next`, `react`, `react-dom`뿐입니다.
 
 ## 실행
 
@@ -12,6 +12,8 @@ npm run dev        # http://localhost:4321
 npm run build      # out/ 에 정적 파일 생성
 npm run typecheck
 ```
+
+`dev`와 `build`는 먼저 `npm run fonts`를 돌려 `src/`에 쓰인 글자만 담은 Pretendard 가변 글꼴(`public/fonts/pretendard-subset.woff2`)을 만듭니다.
 
 `main`에 push하면 `.github/workflows/deploy.yml`이 빌드해서 GitHub Pages에 배포합니다.
 
@@ -26,7 +28,12 @@ npm run typecheck
 | `src/components/Lightbox.tsx` | `<dialog>` 기반 확대 보기 |
 | `src/app/globals.css` | 디자인 토큰 |
 | `scripts/optimize-images.ts` | 원본 이미지를 webp로 변환 |
+| `scripts/subset-font.mjs` | 페이지에 쓰는 글자만 추린 글꼴 생성 (빌드 전 자동 실행) |
 | `DESIGN.md` | 색, 글자, 배치, 움직임 기준 |
+
+## 읽는 축
+
+제목, 본문, 캡션, 진행 표시는 모두 왼쪽 한 축에서 시작하고 오른쪽에는 그림만 둡니다. 데스크톱에서 시선이 좌우로 오가지 않게 하기 위한 규칙입니다.
 
 ## 스크롤 무대
 
