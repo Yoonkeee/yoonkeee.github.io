@@ -15,7 +15,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="ko">
+    <html lang="ko" data-scroll-behavior="smooth">
       <head>
         <link rel="preload" href={fontUrl} as="font" type="font/woff2" crossOrigin="anonymous" />
         <style>{fontFace}</style>

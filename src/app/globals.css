@@ -174,9 +174,9 @@ button {
   color: var(--on-accent);
   font-weight: 600;
   text-decoration: none;
-  transform: translateY(-200%);
 }
 
-.skip-link:focus-visible {
-  transform: none;
+/* Hidden in place: Next.js scrolls to the end of the page after a route change when the first element sits above the viewport. */
+.skip-link:not(:focus-visible) {
+  clip-path: inset(50%);
 }
