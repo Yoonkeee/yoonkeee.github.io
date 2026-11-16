@@ -24,6 +24,15 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
+/** Which step the pinned stage shows at the current scroll position, and how far into it. */
+function stepAt(root: HTMLElement, sticky: HTMLElement, top: number, count: number) {
+  const range = root.offsetHeight - sticky.offsetHeight;
+  const stepSize = range / count;
+  const scrolled = clamp(top - root.getBoundingClientRect().top, 0, range);
+  const index = Math.min(count - 1, Math.floor(scrolled / stepSize));
+  return { index, within: clamp((scrolled - index * stepSize) / stepSize, 0, 1) };
+}
+
 export function Stage({ head, steps }: StageProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
@@ -80,11 +89,7 @@ export function Stage({ head, steps }: StageProps) {
       frame = 0;
       const { pinned, top } = layoutRef.current;
       if (!pinned) return;
-      const range = root.offsetHeight - sticky.offsetHeight;
-      const stepSize = range / count;
-      const scrolled = clamp(top - root.getBoundingClientRect().top, 0, range);
-      const index = Math.min(count - 1, Math.floor(scrolled / stepSize));
-      const within = clamp((scrolled - index * stepSize) / stepSize, 0, 1);
+      const { index, within } = stepAt(root, sticky, top, count);
       root.style.setProperty("--step-progress", within.toFixed(3));
       pan(index, within);
       if (index !== activeRef.current) {
@@ -136,8 +141,14 @@ export function Stage({ head, steps }: StageProps) {
     [count],
   );
 
+  // The browser scrolls a focused element into view after the focus event, so the stage is aligned once that scroll has landed.
   const revealFocusedStep = (index: number) => {
-    if (index !== activeRef.current) goTo(index, "instant");
+    requestAnimationFrame(() => {
+      const root = rootRef.current;
+      const sticky = stickyRef.current;
+      const { pinned, top } = layoutRef.current;
+      if (root && sticky && pinned && stepAt(root, sticky, top, count).index !== index) goTo(index, "instant");
+    });
   };
 
   return (

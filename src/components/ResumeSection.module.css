@@ -7,7 +7,7 @@
 }
 
 section.section {
-  scroll-margin-top: var(--header-h);
+  scroll-margin-top: 0;
 }
 
 .frame {

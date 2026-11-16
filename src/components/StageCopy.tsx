@@ -13,7 +13,11 @@ export function StageCopy({ step }: { step: StageStep }) {
     <>
       {step.shots.map((shot, index) => (
         <h3 key={shot.image} className={styles.title}>
-          {positions && <span className={styles.position}>{positions[index]}</span>}
+          {positions && (
+            <>
+              <span className={styles.position}>{positions[index]}</span>{" "}
+            </>
+          )}
           {shot.caption}
         </h3>
       ))}

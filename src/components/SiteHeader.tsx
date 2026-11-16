@@ -12,7 +12,7 @@ export function SiteHeader({ current }: { current?: string }) {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
-        <Link className={styles.brand} href={ROUTES.home}>
+        <Link className={styles.brand} href={ROUTES.home} aria-current={current === ROUTES.home ? "page" : undefined}>
           {profile.name}
         </Link>
         <nav aria-label="주요 메뉴">

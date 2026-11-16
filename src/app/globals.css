@@ -59,6 +59,8 @@ html {
   -webkit-text-size-adjust: 100%;
   /* Keeps the page width equal whether or not a page is long enough to scroll. */
   scrollbar-gutter: stable;
+  /* Keeps focused elements and anchor targets out from under the sticky site header. */
+  scroll-padding-top: var(--header-h);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -143,7 +145,7 @@ button {
 }
 
 [id] {
-  scroll-margin-top: calc(var(--header-h) + 24px);
+  scroll-margin-top: 24px;
 }
 
 .container {

@@ -9,10 +9,15 @@ export function Toc({ entries }: { entries: TocEntry[] }) {
         {entries.map((entry) => (
           <li key={entry.href}>
             <a href={entry.href}>
-              <span className={styles.no}>{entry.no}</span>
+              <span className={styles.no}>{entry.no}</span>{" "}
               <span className={styles.entry}>
                 <span className={styles.title}>{entry.title}</span>
-                {entry.note && <span className={styles.note}>{entry.note}</span>}
+                {entry.note && (
+                  <>
+                    {" "}
+                    <span className={styles.note}>{entry.note}</span>
+                  </>
+                )}
               </span>
             </a>
           </li>

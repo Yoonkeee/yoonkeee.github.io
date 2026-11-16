@@ -11,7 +11,7 @@ export function Hero({ children }: { children: ReactNode }) {
           {profile.name}
         </h1>
         <p className={styles.role}>
-          <span>{profile.role}</span>
+          <span>{profile.role}</span>{" "}
           <span className={styles.stack}>{profile.stack}</span>
         </p>
         <p className={styles.lead}>

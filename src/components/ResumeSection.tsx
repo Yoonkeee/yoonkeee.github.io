@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import {
   resumeSections,
   type Bullet,
@@ -57,11 +57,19 @@ export function Entry({
       <header className={styles.entryHead}>
         <h3 className={styles.entryTitle}>
           {title}
-          {role && <span className={styles.role}>{role}</span>}
+          {role && (
+            <>
+              {" "}
+              <span className={styles.role}>{role}</span>
+            </>
+          )}
         </h3>
         <p className={styles.meta}>
-          {meta.map((item) => (
-            <span key={item}>{item}</span>
+          {meta.map((item, index) => (
+            <Fragment key={item}>
+              {index > 0 && " "}
+              <span>{item}</span>
+            </Fragment>
           ))}
         </p>
       </header>
@@ -116,7 +124,7 @@ export function RecordList({ records }: { records: Record[] }) {
         <div key={record.title}>
           <dt className={styles.period}>{record.period}</dt>
           <dd>
-            <span className={styles.rowTitle}>{record.title}</span>
+            <span className={styles.rowTitle}>{record.title}</span>{" "}
             <span className={styles.note}>{record.note}</span>
           </dd>
         </div>
@@ -133,7 +141,12 @@ export function SkillList({ skills }: { skills: Skill[] }) {
           <dt>{skill.label}</dt>
           <dd>
             {skill.items.join(" · ")}
-            {skill.note && <span className={styles.note}>{skill.note}</span>}
+            {skill.note && (
+              <>
+                {" "}
+                <span className={styles.note}>{skill.note}</span>
+              </>
+            )}
           </dd>
         </div>
       ))}
