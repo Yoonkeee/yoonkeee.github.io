@@ -75,9 +75,9 @@
   object-fit: contain;
 }
 
+/* Narrow screens stack a pair so every capture keeps the size of a single one. */
 .group[data-frame="phone"] {
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(0, min(380px, calc(var(--phone-max, 826px) * 0.46)));
+  grid-template-columns: minmax(0, min(380px, calc(var(--phone-max, 826px) * 0.46)));
   justify-content: center;
   align-items: start;
 }
@@ -105,8 +105,12 @@
   display: none;
 }
 
+/* Wide screens size every capture to the width at which a pair fits side by side. */
 @media (min-width: 1024px) {
   .group[data-frame="phone"] {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, min(380px, calc(var(--phone-max, 826px) * 0.46), calc((100% - 24px) / 2)));
     justify-content: start;
   }
 }
