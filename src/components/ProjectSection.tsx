@@ -1,6 +1,6 @@
 import type { EditorialProject, FigureProject, Point, Project, StageProject } from "@/data/portfolio";
 import { ArrowDownIcon } from "./icons";
-import { ShotGroup } from "./ShotGroup";
+import { ShotGroup, ShotNotes } from "./ShotGroup";
 import { Stage } from "./Stage";
 import { StageCopy } from "./StageCopy";
 import styles from "./ProjectSection.module.css";
@@ -16,27 +16,23 @@ export function ProjectSection({ project }: { project: Project }) {
   return (
     <section id={project.id} className={`container ${styles.project}`} aria-labelledby={titleId}>
       <header className={styles.head}>
-        <div>
-          <p className={styles.no}>{project.no}</p>
-          <h2 id={titleId} className={styles.title}>
-            {project.title}
-          </h2>
-          <p className={styles.sub}>{project.sub}</p>
-        </div>
-        <div>
-          <p className={styles.summary}>{project.summary}</p>
-          <dl className={styles.meta}>
-            {meta.map(
-              ({ term, detail }) =>
-                detail && (
-                  <div key={term}>
-                    <dt>{term}</dt>
-                    <dd>{detail}</dd>
-                  </div>
-                ),
-            )}
-          </dl>
-        </div>
+        <p className={styles.no}>{project.no}</p>
+        <h2 id={titleId} className={styles.title}>
+          {project.title}
+        </h2>
+        <p className={styles.sub}>{project.sub}</p>
+        <p className={styles.summary}>{project.summary}</p>
+        <dl className={styles.meta}>
+          {meta.map(
+            ({ term, detail }) =>
+              detail && (
+                <div key={term}>
+                  <dt>{term}</dt>
+                  <dd>{detail}</dd>
+                </div>
+              ),
+          )}
+        </dl>
       </header>
       <div className={styles.body}>
         <ProjectBody project={project} />
@@ -79,7 +75,7 @@ function SectionLink({ href, label }: { href: string; label: string }) {
 
 function EditorialBody({ project }: { project: EditorialProject }) {
   return (
-    <>
+    <div className={styles.column}>
       <dl className={styles.metrics}>
         {project.metrics.map((metric) => (
           <div key={metric.label}>
@@ -102,20 +98,25 @@ function EditorialBody({ project }: { project: EditorialProject }) {
           <SectionLink href={project.story.link.href} label={project.story.link.label} />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
 function FigureBody({ project }: { project: FigureProject }) {
+  const shots = [project.figure];
+
   return (
     <div className={styles.split}>
-      <ul className={styles.pointList}>
-        {project.points.map((point) => (
-          <PointItem key={point.title} point={point} />
-        ))}
-      </ul>
+      <div>
+        <ul className={styles.points}>
+          {project.points.map((point) => (
+            <PointItem key={point.title} point={point} />
+          ))}
+        </ul>
+        <ShotNotes frame="diagram" shots={shots} />
+      </div>
       <div className={styles.splitFigure}>
-        <ShotGroup frame="diagram" shots={[project.figure]} />
+        <ShotGroup frame="diagram" shots={shots} />
       </div>
     </div>
   );

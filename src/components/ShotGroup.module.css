@@ -69,6 +69,33 @@
   line-height: 1.6;
 }
 
+.notes {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .caption {
+    display: none;
+  }
+
+  .notes {
+    display: grid;
+    gap: 6px;
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    color: var(--ink-muted);
+    font-size: var(--fs-small);
+    line-height: 1.6;
+  }
+
+  .position {
+    margin-right: 8px;
+    color: var(--ink);
+    font-weight: 600;
+  }
+}
+
 .group[data-frame="screen"] .viewport {
   max-height: var(--frame-max, none);
 }
@@ -115,4 +142,10 @@
 .group[data-frame="inline"] .caption {
   color: #44507a;
   text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .group[data-frame="phone"] {
+    justify-content: start;
+  }
 }

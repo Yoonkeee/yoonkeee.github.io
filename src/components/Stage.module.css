@@ -1,6 +1,6 @@
 .stage {
   --step-distance: 85svh;
-  --stage-gap: clamp(48px, 5vw, 88px);
+  --stage-pad: clamp(40px, 9svh, 96px);
 }
 
 .step + .step {
@@ -8,7 +8,7 @@
 }
 
 .copy {
-  max-width: 40rem;
+  max-width: var(--measure);
 }
 
 .label {
@@ -37,9 +37,9 @@
 @media (min-width: 1024px) {
   .step {
     display: grid;
-    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
-    column-gap: var(--stage-gap);
-    align-items: center;
+    grid-template-columns: var(--text-column) var(--visual-column);
+    column-gap: var(--column-gap);
+    align-items: start;
   }
 
   .visual {
@@ -49,8 +49,8 @@
 
 @media (min-width: 1024px) and (min-height: 640px) and (scripting: enabled) {
   .stage {
-    --frame-max: calc(100svh - var(--header-h) - 168px);
-    --phone-max: calc(100svh - var(--header-h) - 224px);
+    --frame-max: calc(100svh - var(--header-h) - var(--stage-pad) * 2);
+    --phone-max: var(--frame-max);
     height: calc(100svh - var(--header-h) + var(--steps) * var(--step-distance));
   }
 
@@ -58,11 +58,11 @@
     position: sticky;
     top: var(--header-h);
     display: grid;
-    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
-    grid-template-rows: minmax(0, 1fr);
-    column-gap: var(--stage-gap);
-    align-items: center;
+    grid-template-columns: var(--text-column) var(--visual-column);
+    grid-template-rows: auto minmax(0, 1fr);
+    column-gap: var(--column-gap);
     height: calc(100svh - var(--header-h));
+    padding-block: var(--stage-pad);
   }
 
   .step {
@@ -71,6 +71,7 @@
 
   .copy,
   .visual {
+    align-self: start;
     opacity: 0;
     pointer-events: none;
     transition:
@@ -79,12 +80,12 @@
   }
 
   .copy {
-    grid-area: 1 / 1;
+    grid-area: 2 / 1;
     transform: translateY(18px);
   }
 
   .visual {
-    grid-area: 1 / 2;
+    grid-area: 1 / 2 / 3 / 3;
     transform: scale(0.985);
   }
 
@@ -97,11 +98,10 @@
 
   .nav {
     grid-area: 1 / 1;
-    align-self: end;
     display: flex;
     align-items: center;
     gap: 12px;
-    padding-bottom: 28px;
+    margin-bottom: 12px;
   }
 }
 
@@ -115,6 +115,7 @@
 
 .dots {
   display: flex;
+  margin-left: -4px;
 }
 
 .dot {

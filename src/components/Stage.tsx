@@ -123,18 +123,6 @@ export function Stage({ label, steps }: StageProps) {
       aria-label={label}
     >
       <div ref={stickyRef} className={styles.sticky}>
-        {steps.map((step, index) => (
-          <div
-            key={step.id}
-            className={styles.step}
-            data-step={index}
-            data-active={index === active}
-            onFocus={() => revealFocusedStep(index)}
-          >
-            <div className={styles.copy}>{step.copy}</div>
-            <div className={styles.visual}>{step.visual}</div>
-          </div>
-        ))}
         <div className={styles.nav}>
           <ol className={styles.dots}>
             {steps.map((step, index) => (
@@ -154,6 +142,18 @@ export function Stage({ label, steps }: StageProps) {
             {active + 1} / {count}
           </p>
         </div>
+        {steps.map((step, index) => (
+          <div
+            key={step.id}
+            className={styles.step}
+            data-step={index}
+            data-active={index === active}
+            onFocus={() => revealFocusedStep(index)}
+          >
+            <div className={styles.copy}>{step.copy}</div>
+            <div className={styles.visual}>{step.visual}</div>
+          </div>
+        ))}
       </div>
     </div>
   );

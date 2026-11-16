@@ -10,7 +10,7 @@
 .inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: clamp(12px, 3vw, 28px);
   height: 100%;
 }
 
@@ -25,8 +25,7 @@
 
 .links {
   display: flex;
-  gap: clamp(0px, 1.5vw, 16px);
-  margin-right: -10px;
+  gap: clamp(0px, 1vw, 8px);
 }
 
 .links a {

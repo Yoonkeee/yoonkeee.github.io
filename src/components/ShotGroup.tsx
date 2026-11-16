@@ -12,6 +12,11 @@ const SIZES: Record<FrameKind, string> = {
   inline: "400px",
 };
 
+const PAIR_POSITIONS: Partial<Record<FrameKind, readonly [string, string]>> = {
+  inline: ["위", "아래"],
+  phone: ["왼쪽", "오른쪽"],
+};
+
 const INLINE_SCALE = 0.6;
 
 type ShotGroupProps = {
@@ -48,5 +53,20 @@ export function ShotGroup({ frame, shots }: ShotGroupProps) {
         );
       })}
     </div>
+  );
+}
+
+export function ShotNotes({ frame, shots }: ShotGroupProps) {
+  const positions = shots.length === 2 ? PAIR_POSITIONS[frame] : undefined;
+
+  return (
+    <ul className={styles.notes}>
+      {shots.map((shot, index) => (
+        <li key={shot.image}>
+          {positions && <span className={styles.position}>{positions[index]}</span>}
+          {shot.caption}
+        </li>
+      ))}
+    </ul>
   );
 }
