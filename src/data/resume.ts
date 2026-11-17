@@ -1,5 +1,3 @@
-import { profile } from "./portfolio";
-
 export type Bullet = {
   text: string;
   sub?: string[];
@@ -53,12 +51,6 @@ export const resumeSections = [
 ] as const;
 
 export type ResumeSectionId = (typeof resumeSections)[number]["id"];
-
-export const resumeIntro = [
-  ...profile.intro,
-  "AI에 익숙해지고 잘 다루게 되면서 한계가 점점 없어지는 것을 느꼈고, 프론트엔드 직무라는 경계를 넘어 백엔드, QA, 기획, 디자인까지",
-  "모두 소화할 수 있는 Product Engineer를 목표로 합니다.",
-];
 
 export const experience: Job[] = [
   {

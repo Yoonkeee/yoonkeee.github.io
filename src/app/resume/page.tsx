@@ -16,7 +16,6 @@ import {
   activities,
   education,
   experience,
-  resumeIntro,
   resumeSections,
   sideProjects,
   skills,
@@ -36,7 +35,7 @@ export default function ResumePage() {
       </a>
       <SiteHeader current={ROUTES.resume} />
       <main id="main">
-        <Hero intro={resumeIntro}>
+        <Hero>
           <Toc entries={TOC} />
         </Hero>
         <ResumeSection id="experience" pinEntries>
