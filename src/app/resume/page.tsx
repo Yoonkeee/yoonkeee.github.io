@@ -12,7 +12,15 @@ import {
 import { SiteHeader } from "@/components/SiteHeader";
 import { Toc } from "@/components/Toc";
 import { profile } from "@/data/portfolio";
-import { activities, education, experience, resumeSections, sideProjects, skills } from "@/data/resume";
+import {
+  activities,
+  education,
+  experience,
+  resumeIntro,
+  resumeSections,
+  sideProjects,
+  skills,
+} from "@/data/resume";
 import { pageMetadata, ROUTES } from "@/data/site";
 import styles from "./page.module.css";
 
@@ -28,7 +36,7 @@ export default function ResumePage() {
       </a>
       <SiteHeader current={ROUTES.resume} />
       <main id="main">
-        <Hero>
+        <Hero intro={resumeIntro}>
           <Toc entries={TOC} />
         </Hero>
         <ResumeSection id="experience" pinEntries>

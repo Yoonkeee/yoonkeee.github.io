@@ -3,7 +3,13 @@ import { profile } from "@/data/portfolio";
 import { GithubIcon, MailIcon } from "./icons";
 import styles from "./Hero.module.css";
 
-export function Hero({ children }: { children: ReactNode }) {
+export function Hero({
+  children,
+  intro = profile.intro,
+}: {
+  children: ReactNode;
+  intro?: readonly string[];
+}) {
   return (
     <section className={`container ${styles.hero}`} aria-labelledby="hero-name">
       <div className={styles.column}>
@@ -15,7 +21,7 @@ export function Hero({ children }: { children: ReactNode }) {
           <span className={styles.stack}>{profile.stack}</span>
         </p>
         <p className={styles.lead}>
-          {profile.intro.map((sentence) => (
+          {intro.map((sentence) => (
             <span key={sentence} className={styles.sentence}>
               {sentence}{" "}
             </span>
