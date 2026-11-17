@@ -1,3 +1,8 @@
 .page {
   --container-max: 56rem;
 }
+
+/* Short project entries read as one block at the default spacing, so they sit a little further apart. */
+.page :global(#side-projects) {
+  --entry-gap: clamp(48px, 6vw, 72px);
+}

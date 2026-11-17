@@ -53,8 +53,8 @@ section.section {
 }
 
 .entry + .entry {
-  margin-top: clamp(40px, 5vw, 56px);
-  padding-top: clamp(40px, 5vw, 56px);
+  margin-top: var(--entry-gap, clamp(40px, 5vw, 56px));
+  padding-top: var(--entry-gap, clamp(40px, 5vw, 56px));
   border-top: 1px solid var(--line);
 }
 
