@@ -257,9 +257,12 @@ section.section {
     grid-area: 1 / 1;
   }
 
+  /* Project names wrap in the narrow column, so the lines sit tighter and break evenly. */
   .frame[data-pin] .entryTitle {
     flex-direction: column;
     gap: 2px;
+    line-height: 1.22;
+    text-wrap: balance;
   }
 
   .frame[data-pin] .meta {

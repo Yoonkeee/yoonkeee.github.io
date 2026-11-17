@@ -48,7 +48,7 @@ export default function ResumePage() {
             </Entry>
           ))}
         </ResumeSection>
-        <ResumeSection id="side-projects">
+        <ResumeSection id="side-projects" pinEntries>
           {sideProjects.map((project) => (
             <Entry key={project.id} title={project.title} meta={[project.period]} desc={project.desc}>
               <BulletList bullets={project.bullets} />
