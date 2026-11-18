@@ -54,18 +54,12 @@ export type EditorialProject = ProjectBase & {
   story: { paragraphs: string[]; link: InlineLink };
 };
 
-export type FigureProject = ProjectBase & {
-  kind: "figure";
-  points: Point[];
-  figure: Shot;
-};
-
 export type StageProject = ProjectBase & {
   kind: "stage";
   steps: StageStep[];
 };
 
-export type Project = EditorialProject | FigureProject | StageProject;
+export type Project = EditorialProject | StageProject;
 
 type FeedbackBase = {
   id: string;
@@ -143,7 +137,7 @@ export const projects: Project[] = [
     },
   },
   {
-    kind: "figure",
+    kind: "stage",
     id: "project-02",
     no: "02",
     title: "다국어 처리 자동화 도구",
@@ -154,18 +148,35 @@ export const projects: Project[] = [
     stack: ["Next.js", "Figma REST API", "Google Sheets API", "Claude Code"],
     summary:
       "신규 피처마다 기획팀이 Figma 시안의 문구를 하나씩 뽑아 다국어 시트에 옮기고 직접 번역하던 수작업을 자동화해, 기획팀의 핵심 워크플로우로 정착시켰습니다.",
-    points: [
+    steps: [
       {
-        body: "최초 설계 시에는 Figma MCP로 연동하려 했으나, 사용할 때마다 Figma 앱과 추출할 페이지를 열어두어야 하는 제약이 있었습니다. 비개발 직군인 기획자와 디자이너가 쓰기에 번거롭다고 판단해 Figma REST API 기반으로 구현했습니다.",
+        points: [
+          {
+            body: "최초 설계 시에는 Figma MCP로 연동하려 했으나, 사용할 때마다 Figma 앱과 추출할 페이지를 열어두어야 하는 제약이 있었습니다. 비개발 직군인 기획자와 디자이너가 쓰기에 번거롭다고 판단해 Figma REST API 기반으로 구현했습니다.",
+          },
+          {
+            body: "개발 환경 설정 없이 바로 쓸 수 있도록 각자 PC의 Claude를 활용하는 로컬 웹앱으로 만들고, 프롬프트 한 줄로 설치할 수 있게 저장소를 구성했습니다. 또한 앱 실행 시 자동으로 최신 버전을 유지하고, 오류가 발생하면 로그와 함께 GitHub 이슈로 자동 등록되도록 설정했습니다.",
+          },
+        ],
+        frame: "diagram",
+        shots: [
+          {
+            image: "i18n-architecture",
+            caption: "로컬 웹앱이 Figma 문구를 추출하고, Claude로 분류와 번역, 키 생성을 거쳐 Google Sheets에 반영하는 구조",
+          },
+        ],
       },
       {
-        body: "개발 환경 설정 없이 바로 쓸 수 있도록 각자 PC의 Claude를 활용하는 로컬 웹앱으로 만들고, 프롬프트 한 줄로 설치할 수 있게 저장소를 구성했습니다. 또한 앱 실행 시 자동으로 최신 버전을 유지하고, 오류가 발생하면 로그와 함께 GitHub 이슈로 자동 등록되도록 설정했습니다.",
+        frame: "diagram",
+        shots: [
+          {
+            image: "i18n-flow",
+            caption:
+              "Figma 링크 하나로 문구를 분석하고, 담당자 검수를 거쳐 Google Sheets에 키를 추가하기까지의 처리 흐름. 같은 번호의 단계는 동시에 실행됩니다.",
+          },
+        ],
       },
     ],
-    figure: {
-      image: "i18n-architecture",
-      caption: "로컬 웹앱이 Figma 문구를 추출하고, Claude로 분류와 번역, 키 생성을 거쳐 Google Sheets에 반영하는 구조",
-    },
   },
   {
     kind: "stage",

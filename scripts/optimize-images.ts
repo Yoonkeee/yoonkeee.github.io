@@ -3,6 +3,7 @@ import { join, resolve } from "node:path";
 
 const PUBLISHED: Record<string, string> = {
   "i18n-architecture.png": "i18n-architecture",
+  "i18n-flow.png": "i18n-flow",
   "work-status-team-redacted.png": "work-status-team",
   "slack-profile-status-redacted.png": "slack-profile-status",
   "slack-name-status-redacted.png": "slack-name-status",

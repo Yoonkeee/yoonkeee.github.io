@@ -11,6 +11,18 @@
       "height": 739
     }
   },
+  "i18n-flow": {
+    "large": {
+      "src": "/images/i18n-flow.webp",
+      "width": 2000,
+      "height": 1392
+    },
+    "small": {
+      "src": "/images/i18n-flow-sm.webp",
+      "width": 1000,
+      "height": 696
+    }
+  },
   "work-status-team": {
     "large": {
       "src": "/images/work-status-team.webp",

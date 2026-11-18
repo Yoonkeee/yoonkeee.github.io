@@ -67,8 +67,6 @@ function ProjectBody({ project, head }: { project: Project; head: ReactNode }) {
           <EditorialBody project={project} />
         </div>
       );
-    case "figure":
-      return <Stage head={head} steps={[stepView({ points: project.points, frame: "diagram", shots: [project.figure] })]} />;
     case "stage":
       return <Stage head={head} steps={project.steps.map((step) => stepView(step))} />;
     default:
