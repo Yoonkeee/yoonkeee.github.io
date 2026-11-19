@@ -7,6 +7,7 @@ import {
   type Skill,
   type Work,
 } from "@/data/resume";
+import { LinkedText } from "./LinkedText";
 import { PinBar, pinScope } from "./PinBar";
 import styles from "./ResumeSection.module.css";
 
@@ -141,7 +142,9 @@ export function RecordList({ records }: { records: Record[] }) {
           <dt className={styles.period}>{record.period}</dt>
           <dd>
             <span className={styles.rowTitle}>{record.title}</span>{" "}
-            <span className={styles.note}>{record.note}</span>
+            <span className={styles.note}>
+              <LinkedText text={record.note} links={record.links} />
+            </span>
           </dd>
         </div>
       ))}

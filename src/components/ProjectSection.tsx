@@ -92,7 +92,7 @@ function PointList({ points }: { points: Point[] }) {
       {points.flatMap((point) =>
         point.body.split(/(?<=[.?!])\s+/).map((sentence) => (
           <li key={sentence}>
-            <LinkedText text={sentence} link={point.link} />
+            <LinkedText text={sentence} links={point.link && [point.link]} />
           </li>
         )),
       )}
@@ -115,7 +115,7 @@ function EditorialBody({ project }: { project: EditorialProject }) {
       <div className={styles.story}>
         {project.story.paragraphs.map((paragraph) => (
           <p key={paragraph}>
-            <LinkedText text={paragraph} link={project.story.link} />
+            <LinkedText text={paragraph} links={[project.story.link]} />
           </p>
         ))}
       </div>

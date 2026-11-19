@@ -1,3 +1,5 @@
+import type { InlineLink } from "./portfolio";
+
 export type Bullet = {
   text: string;
   sub?: string[];
@@ -40,6 +42,7 @@ export type Record = {
   period: string;
   title: string;
   note: string;
+  links?: InlineLink[];
 };
 
 export const resumeSections = [
@@ -184,6 +187,12 @@ export const activities: Record[] = [
     period: "2026. 07 ~",
     title: "AI 코딩 도구 오픈소스 기여",
     note: "OmO(oh-my-openagent), senpi, opencodex, CodexBar",
+    links: [
+      { text: "OmO(oh-my-openagent)", href: "https://github.com/code-yeongyu/oh-my-openagent" },
+      { text: "senpi", href: "https://github.com/code-yeongyu/senpi" },
+      { text: "opencodex", href: "https://github.com/lidge-jun/opencodex" },
+      { text: "CodexBar", href: "https://github.com/steipete/CodexBar" },
+    ],
   },
   { period: "2026. 04", title: "하네스 엔지니어링 - 같은 모델, 다른 행동의 비밀", note: "사내 개발팀을 대상으로 발표" },
   { period: "2026. 03", title: "Claude Skill 이해하기", note: "사내 임직원을 대상으로 강의" },
