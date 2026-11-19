@@ -1,6 +1,9 @@
+/* Shrinks to the longest entry, whose end is the line the back-to-top button aligns to. */
 .list {
   display: grid;
   gap: 2px;
+  width: max-content;
+  anchor-name: --page-index;
 }
 
 .link {

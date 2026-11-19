@@ -1,8 +1,9 @@
 .button {
   position: fixed;
-  /* Sits in the page margin, outside the capture frames whose expand button is at their bottom right. A page with its own index column sets --scroll-top-left to line the button up with it. */
+  /* Sits in the page margin, outside the capture frames whose expand button is at their bottom right. */
   right: calc(16px + env(safe-area-inset-right));
-  left: var(--scroll-top-left, auto);
+  /* Where a section index is shown, its right edge meets the end of the index's longest entry; otherwise (or without anchor positioning) it stays in the margin. */
+  right: anchor(--page-index right, calc(16px + env(safe-area-inset-right)));
   bottom: calc(16px + env(safe-area-inset-bottom));
   z-index: 10;
   display: grid;
