@@ -164,51 +164,80 @@
   }
 }
 
+/* Numbered steps joined by a line; the line after the current step fills with the scroll progress through it. */
 .dots {
   display: flex;
   align-items: center;
-  margin-left: -4px;
+  margin-left: -8px;
 }
 
+.dots li {
+  display: flex;
+  align-items: center;
+}
+
+.dots li + li::before {
+  content: "";
+  width: 24px;
+  height: 2px;
+  margin-inline: -8px;
+  background: #808999;
+}
+
+.dots li:has(> [data-state="done"]) + li::before {
+  background: var(--ink);
+}
+
+.dots li:has(> [data-state="current"]) + li::before {
+  background: linear-gradient(to right, var(--ink) calc(var(--step-progress, 0) * 100%), #808999 0);
+}
+
+/* The 44px target overhangs the 28px row so the stage layout keeps its measured height. */
 .dot {
-  position: relative;
-  display: block;
+  display: grid;
+  place-items: center;
   width: 44px;
   height: 44px;
+  margin-block: -8px;
   padding: 0;
   border: 0;
   background: none;
   cursor: pointer;
 }
 
-.dot::before,
-.dot::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 4px;
-  left: 4px;
-  height: 3px;
-  margin-top: -1.5px;
-  border-radius: 2px;
+.dotNo {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid #808999;
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--ink-muted);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
 }
 
-.dot::before {
-  background: #808999;
+.dot:hover .dotNo {
+  border-color: var(--ink);
+  color: var(--ink);
 }
 
-.dot:hover::before {
-  background: var(--ink-muted);
+.dot[data-state="done"] .dotNo {
+  border-color: var(--ink);
+  color: var(--ink);
 }
 
-.dot[data-state="done"]::before {
-  background: var(--ink);
-}
-
-.dot[data-state="current"]::after {
-  background: var(--ink);
-  transform: scaleX(var(--step-progress, 0));
-  transform-origin: left center;
+.dot[data-state="current"] .dotNo {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 .count {

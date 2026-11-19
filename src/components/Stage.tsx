@@ -172,7 +172,11 @@ export function Stage({ head, steps }: StageProps) {
                     aria-current={index === active ? "step" : undefined}
                     aria-label={`${index + 1}단계: ${step.label}`}
                     onClick={() => goTo(index, "auto")}
-                  />
+                  >
+                    <span className={styles.dotNo} aria-hidden="true">
+                      {index + 1}
+                    </span>
+                  </button>
                 </li>
               ))}
             </ol>
