@@ -1,9 +1,8 @@
 .button {
   position: fixed;
-  /* Sits in the page margin, outside the capture frames whose expand button is at their bottom right. */
-  right: calc(16px + env(safe-area-inset-right));
-  /* Where a section index is shown, its right edge meets the end of the index's longest entry; otherwise (or without anchor positioning) it stays in the margin. */
-  right: anchor(--page-index right, calc(16px + env(safe-area-inset-right)));
+  /* Its right edge sits on the content's right edge (the centered container minus its gutter), at least 16px from the window edge. */
+  --content-edge: max(var(--gutter), (100% - var(--container-max, 1400px)) / 2, 16px + env(safe-area-inset-right));
+  right: var(--content-edge);
   bottom: calc(16px + env(safe-area-inset-bottom));
   z-index: 10;
   display: grid;
@@ -26,6 +25,13 @@
   visibility: hidden;
   opacity: 0;
   transform: translateY(12px);
+}
+
+/* Where a section index is shown, the right edge meets the end of the index's longest entry instead. */
+@supports (anchor-name: --a) {
+  .button {
+    right: anchor(--page-index right, var(--content-edge));
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
