@@ -1,8 +1,6 @@
 .section {
   --label-col: 11.5rem;
   --label-gap: 40px;
-  /* Height of the pinned section title: one heading line plus its 12px and 10px padding. */
-  --title-h: calc(var(--fs-h2) * var(--lh-heading) + 22px);
   margin-top: var(--section-gap);
 }
 
@@ -21,31 +19,9 @@ section.section {
   font-variant-numeric: tabular-nums;
 }
 
-/* The title pins against the frame, so its wrapper must not be its containing block. */
-.head {
-  display: contents;
-}
-
-/* Stays under the site header while its section scrolls; the margins cancel the padding so the resting spacing is unchanged. */
 .title {
-  position: sticky;
-  top: var(--header-h);
-  z-index: 2;
-  margin-block: -4px -10px;
-  padding-block: 12px 10px;
-  background: var(--bg);
+  margin-top: 8px;
   font-size: var(--fs-h2);
-}
-
-/* Fades the lines sliding under a pinned heading instead of cutting them mid-glyph. */
-.title::after,
-.workHead::after {
-  position: absolute;
-  inset: 100% 0 auto;
-  height: 10px;
-  background: linear-gradient(var(--bg), transparent);
-  content: "";
-  pointer-events: none;
 }
 
 .body {
@@ -63,12 +39,12 @@ section.section {
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0 0.6em;
-  font-size: var(--fs-h3);
+  font-size: var(--fs-entry);
 }
 
 .role {
   color: var(--ink-muted);
-  font-size: var(--fs-body);
+  font-size: 0.9375rem;
   font-weight: 500;
   letter-spacing: 0;
 }
@@ -83,10 +59,11 @@ section.section {
   font-variant-numeric: tabular-nums;
 }
 
+/* Same size as the body, set apart by weight like a portfolio project summary, so it never outranks the work titles below. */
 .desc {
   margin-top: 16px;
   color: var(--ink);
-  font-size: var(--fs-lead);
+  font-weight: 500;
   text-wrap: wrap;
 }
 
@@ -99,26 +76,21 @@ section.section {
   border-top: 1px solid var(--line);
 }
 
-/* Stays under the pinned section title while its work block scrolls; the background hides the text passing beneath. */
 .workHead {
-  position: sticky;
-  top: calc(var(--header-h) + var(--title-h));
-  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
   gap: 0 16px;
   padding-block: 24px 10px;
-  background: var(--bg);
 }
 
-.work > .bullets {
+.workBody > .bullets {
   margin-top: 4px;
 }
 
 .workTitle {
-  font-size: 1.1875rem;
+  font-size: clamp(1.1875rem, 1.1rem + 0.25vw, 1.25rem);
 }
 
 .workPeriod {
@@ -252,7 +224,7 @@ section.section {
   /* Pinned entries keep the whole heading in the left column while the content scrolls. */
   .frame[data-pin] .entryHead {
     position: sticky;
-    top: calc(var(--header-h) + var(--title-h) + 24px);
+    top: calc(var(--header-h) + var(--pin-h) + 24px);
     display: block;
     grid-area: 1 / 1;
   }

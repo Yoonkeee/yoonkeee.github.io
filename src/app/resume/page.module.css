@@ -1,8 +1,29 @@
-.page {
-  --container-max: 56rem;
+.sections {
+  max-width: 56rem;
 }
 
 /* Short project entries read as one block at the default spacing, so they sit a little further apart. */
-.page :global(#side-projects) {
+.sections :global(#side-projects) {
   --entry-gap: clamp(48px, 6vw, 72px);
+}
+
+.index {
+  display: none;
+}
+
+/* Wide enough for the section index beside the document column, with or without a classic scrollbar. */
+@media (min-width: 1240px) {
+  .body {
+    display: grid;
+    grid-template-columns: minmax(0, 56rem) minmax(0, 1fr);
+    column-gap: var(--column-gap);
+    align-items: start;
+  }
+
+  .index {
+    display: block;
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
+    margin-top: calc(var(--section-gap) + 40px);
+  }
 }

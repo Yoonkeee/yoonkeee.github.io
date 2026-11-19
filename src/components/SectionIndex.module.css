@@ -1,0 +1,36 @@
+.list {
+  display: grid;
+  gap: 2px;
+}
+
+.link {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding-block: 6px;
+  color: var(--ink-muted);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.link:hover {
+  color: var(--ink);
+}
+
+.no {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.link[aria-current] {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.link[aria-current] .no {
+  color: var(--accent-ink);
+  font-weight: 700;
+}

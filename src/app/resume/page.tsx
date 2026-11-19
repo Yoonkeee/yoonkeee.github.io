@@ -9,6 +9,7 @@ import {
   StackLine,
   WorkBlock,
 } from "@/components/ResumeSection";
+import { SectionIndex } from "@/components/SectionIndex";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Toc } from "@/components/Toc";
 import { profile } from "@/data/portfolio";
@@ -38,40 +39,45 @@ export default function ResumePage() {
         <Hero>
           <Toc entries={TOC} />
         </Hero>
-        <ResumeSection id="experience" pinEntries>
-          {experience.map((job) => (
-            <Entry
-              key={job.id}
-              title={job.company}
-              role={job.role}
-              meta={[job.period, ...job.meta]}
-              desc={job.desc}
-              summary={job.summary}
-            >
-              {job.works?.map((work) => (
-                <WorkBlock key={work.title} work={work} />
+        <div className={`container ${styles.body}`}>
+          <div className={styles.sections}>
+            <ResumeSection id="experience" pinEntries>
+              {experience.map((job) => (
+                <Entry
+                  key={job.id}
+                  title={job.company}
+                  role={job.role}
+                  meta={[job.period, ...job.meta]}
+                  desc={job.desc}
+                  summary={job.summary}
+                >
+                  {job.works?.map((work) => (
+                    <WorkBlock key={work.title} work={work} section="experience" />
+                  ))}
+                  {job.bullets && <BulletList bullets={job.bullets} />}
+                </Entry>
               ))}
-              {job.bullets && <BulletList bullets={job.bullets} />}
-            </Entry>
-          ))}
-        </ResumeSection>
-        <ResumeSection id="side-projects" pinEntries>
-          {sideProjects.map((project) => (
-            <Entry key={project.id} title={project.title} meta={[project.period]} desc={project.desc}>
-              <BulletList bullets={project.bullets} />
-              <StackLine items={project.stack} />
-            </Entry>
-          ))}
-        </ResumeSection>
-        <ResumeSection id="skills">
-          <SkillList skills={skills} />
-        </ResumeSection>
-        <ResumeSection id="activities">
-          <RecordList records={activities} />
-        </ResumeSection>
-        <ResumeSection id="education">
-          <RecordList records={education} />
-        </ResumeSection>
+            </ResumeSection>
+            <ResumeSection id="side-projects" pinEntries>
+              {sideProjects.map((project) => (
+                <Entry key={project.id} title={project.title} meta={[project.period]} desc={project.desc}>
+                  <BulletList bullets={project.bullets} />
+                  <StackLine items={project.stack} />
+                </Entry>
+              ))}
+            </ResumeSection>
+            <ResumeSection id="skills">
+              <SkillList skills={skills} />
+            </ResumeSection>
+            <ResumeSection id="activities">
+              <RecordList records={activities} />
+            </ResumeSection>
+            <ResumeSection id="education">
+              <RecordList records={education} />
+            </ResumeSection>
+          </div>
+          <SectionIndex label="이력서 구간" sections={resumeSections} className={styles.index} />
+        </div>
       </main>
       <Contact />
     </div>

@@ -7,6 +7,7 @@ import {
   type Skill,
   type Work,
 } from "@/data/resume";
+import { PinBar, pinScope } from "./PinBar";
 import styles from "./ResumeSection.module.css";
 
 export function ResumeSection({
@@ -23,15 +24,18 @@ export function ResumeSection({
   const titleId = `${id}-title`;
 
   return (
-    <section id={id} className={`container ${styles.section}`} aria-labelledby={titleId}>
+    <section id={id} className={styles.section} aria-labelledby={titleId}>
       <div className={styles.frame} data-pin={pinEntries || undefined}>
-        <header className={styles.head}>
+        <header>
           <p className={styles.no}>{section.no}</p>
           <h2 id={titleId} className={styles.title}>
             {section.title}
           </h2>
         </header>
-        <div className={styles.body}>{children}</div>
+        <div className={`${styles.body} ${pinScope}`}>
+          <PinBar no={section.no} title={section.title} />
+          {children}
+        </div>
       </div>
     </section>
   );
@@ -82,14 +86,26 @@ export function Entry({
   );
 }
 
-export function WorkBlock({ work }: { work: Work }) {
+export function WorkBlock({ work, section: sectionId }: { work: Work; section: ResumeSectionId }) {
+  const section = resumeSections.find((item) => item.id === sectionId);
+
   return (
     <section className={styles.work}>
       <div className={styles.workHead}>
         <h4 className={styles.workTitle}>{work.title}</h4>
         <p className={styles.workPeriod}>{work.period}</p>
       </div>
-      <BulletList bullets={work.bullets} />
+      <div className={`${styles.workBody} ${pinScope}`}>
+        {section && (
+          <PinBar
+            no={section.no}
+            title={section.title}
+            item={{ title: work.title, meta: work.period }}
+            trail="narrow"
+          />
+        )}
+        <BulletList bullets={work.bullets} />
+      </div>
     </section>
   );
 }
