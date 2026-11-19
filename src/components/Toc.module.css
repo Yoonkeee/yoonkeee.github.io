@@ -1,5 +1,5 @@
 .toc {
-  max-width: var(--measure);
+  max-width: var(--measure-wide);
   margin-top: clamp(32px, 4vw, 44px);
 }
 

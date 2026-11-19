@@ -89,8 +89,7 @@ export const profile = {
   intro: [
     "Next.js 기반 웹과 모바일 프론트엔드를 개발하며, 팀의 생산성을 높이고 불편함을 해소하기 위해 스스로 문제를 정의하고 개선책을 찾아 실행해 왔습니다.",
     "타 직군과의 의사소통에도 능숙하고, 좋은 팀 분위기를 만들기 위해 노력합니다.",
-    "AI에 익숙해지고 잘 다루게 되면서 한계가 점점 없어지는 것을 느꼈고, 프론트엔드 직무라는 경계를 넘어 백엔드, QA, 기획, 디자인까지",
-    "모두 소화할 수 있는 Product Engineer를 목표로 합니다.",
+    "AI에 익숙해지고 잘 다루게 되면서 한계가 점점 없어지는 것을 느꼈고, 프론트엔드 직무라는 경계를 넘어 백엔드, QA, 기획, 디자인까지 모두 소화할 수 있는 Product Engineer를 목표로 합니다.",
   ],
   email: "yoonkeee@gmail.com",
   github: { label: "github.com/Yoonkeee", url: "https://github.com/Yoonkeee" },

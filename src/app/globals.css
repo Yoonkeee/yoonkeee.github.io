@@ -34,6 +34,7 @@
 
   --header-h: 60px;
   --measure: 42rem;
+  --measure-wide: 50rem;
   --gutter: clamp(20px, 5vw, 48px);
   --text-column: minmax(0, 5fr);
   --visual-column: minmax(0, 6fr);

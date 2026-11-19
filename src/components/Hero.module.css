@@ -40,20 +40,15 @@
   white-space: nowrap;
 }
 
+/* Shares its width with the contents list below, so the first screen reads as one column. */
 .column > .lead {
-  max-width: 50rem;
+  max-width: var(--measure-wide);
   margin-top: 20px;
   font-size: var(--fs-lead);
 }
 
 .sentence {
   display: block;
-}
-
-@media (min-width: 1024px) {
-  .column > .lead {
-    max-width: none;
-  }
 }
 
 .actions {
