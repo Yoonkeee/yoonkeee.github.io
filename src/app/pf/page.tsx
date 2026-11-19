@@ -5,7 +5,7 @@ import { LightboxProvider } from "@/components/Lightbox";
 import { ProjectSection } from "@/components/ProjectSection";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Toc } from "@/components/Toc";
-import { feedback, profile, projects } from "@/data/portfolio";
+import { feedback, feedbackHeading, profile, projects } from "@/data/portfolio";
 import { pageMetadata, ROUTES } from "@/data/site";
 
 export const metadata = pageMetadata(`${profile.name} 포트폴리오`, ROUTES.portfolio);
@@ -14,8 +14,8 @@ const TOC = [
   ...projects.map((project) => ({ href: `#${project.id}`, no: project.no, title: project.title, note: project.since })),
   {
     href: "#feedback",
-    no: String(projects.length + 1).padStart(2, "0"),
-    title: "동료 피드백",
+    no: feedbackHeading.no,
+    title: feedbackHeading.title,
     note: `${feedback.length}건`,
   },
 ];

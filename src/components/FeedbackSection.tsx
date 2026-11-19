@@ -1,18 +1,22 @@
-import { feedback, imageOf, type Feedback } from "@/data/portfolio";
-import { ExpandIcon } from "./icons";
+import type { ReactNode } from "react";
+import { feedback, feedbackHeading, imageOf, type Feedback } from "@/data/portfolio";
+import { ExpandIcon, PersonIcon } from "./icons";
 import { ZoomButton } from "./Lightbox";
+import { PinBar, pinScope } from "./PinBar";
 import styles from "./FeedbackSection.module.css";
 
 export function FeedbackSection() {
   return (
     <section id="feedback" className={`container ${styles.section}`} aria-labelledby="feedback-title">
       <div className={styles.frame}>
-        <header className={styles.head}>
+        <header>
+          <p className={styles.no}>{feedbackHeading.no}</p>
           <h2 id="feedback-title" className={styles.title}>
-            동료 피드백
+            {feedbackHeading.title}
           </h2>
         </header>
-        <div className={styles.list}>
+        <div className={`${styles.list} ${pinScope}`}>
+          <PinBar no={feedbackHeading.no} title={feedbackHeading.title} />
           {feedback.map((item) => (
             <Entry key={item.id} item={item} />
           ))}
@@ -44,11 +48,15 @@ function Entry({ item }: { item: Feedback }) {
 function EntryBody({ item }: { item: Feedback }) {
   switch (item.type) {
     case "note":
-      return item.paragraphs.map((paragraph) => (
-        <p key={paragraph} className={styles.text}>
-          {paragraph}
-        </p>
-      ));
+      return (
+        <Voice className={styles.note}>
+          {item.paragraphs.map((paragraph) => (
+            <p key={paragraph} className={styles.text}>
+              {paragraph}
+            </p>
+          ))}
+        </Voice>
+      );
     case "review":
       return (
         <>
@@ -56,7 +64,9 @@ function EntryBody({ item }: { item: Feedback }) {
           <p className={styles.score}>{item.score}</p>
           <ul className={styles.comments}>
             {item.comments.map((comment) => (
-              <li key={comment}>{comment}</li>
+              <Voice key={comment} as="li">
+                <p className={styles.text}>{comment}</p>
+              </Voice>
             ))}
           </ul>
         </>
@@ -64,4 +74,15 @@ function EntryBody({ item }: { item: Feedback }) {
     default:
       return item satisfies never;
   }
+}
+
+function Voice({ as: Tag = "div", className, children }: { as?: "div" | "li"; className?: string; children: ReactNode }) {
+  return (
+    <Tag className={className ? `${styles.voice} ${className}` : styles.voice}>
+      <span className={styles.avatar} aria-hidden="true">
+        <PersonIcon width={16} height={16} />
+      </span>
+      <div className={styles.words}>{children}</div>
+    </Tag>
+  );
 }

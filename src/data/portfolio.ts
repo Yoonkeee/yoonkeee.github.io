@@ -341,6 +341,8 @@ export const projects: Project[] = [
   },
 ];
 
+export const feedbackHeading = { no: String(projects.length + 1).padStart(2, "0"), title: "동료 피드백" };
+
 export const feedback: Feedback[] = [
   {
     type: "note",
