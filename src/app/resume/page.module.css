@@ -26,4 +26,11 @@
     top: calc(var(--header-h) + 24px);
     margin-top: calc(var(--section-gap) + 40px);
   }
+
+  /* The back-to-top button sits on the index's left edge: centered container, its gutter, the document column, the column gap. */
+  :global(html):has(.index) {
+    --scroll-top-left: calc(
+      max(0px, (100% - var(--container-max, 1400px) - var(--gutter) * 2) / 2) + var(--gutter) + 56rem + var(--column-gap)
+    );
+  }
 }

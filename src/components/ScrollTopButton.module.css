@@ -1,7 +1,8 @@
 .button {
   position: fixed;
-  /* Sits in the page margin, outside the capture frames whose expand button is at their bottom right. */
+  /* Sits in the page margin, outside the capture frames whose expand button is at their bottom right. A page with its own index column sets --scroll-top-left to line the button up with it. */
   right: calc(16px + env(safe-area-inset-right));
+  left: var(--scroll-top-left, auto);
   bottom: calc(16px + env(safe-area-inset-bottom));
   z-index: 10;
   display: grid;

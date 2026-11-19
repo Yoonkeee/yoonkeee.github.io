@@ -30,7 +30,7 @@ const TOC = resumeSections.map((section) => ({ href: `#${section.id}`, no: secti
 
 export default function ResumePage() {
   return (
-    <div className={styles.page}>
+    <>
       <a className="skip-link" href="#main">
         본문으로 건너뛰기
       </a>
@@ -80,6 +80,6 @@ export default function ResumePage() {
         </div>
       </main>
       <Contact />
-    </div>
+    </>
   );
 }
